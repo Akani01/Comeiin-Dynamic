@@ -1,0 +1,245 @@
+{% load static %}
+<!doctype html>
+<html lang="en-ZA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <base href="/" />
+  <title>{% block title %}Comeiin Works — Laboratory Equipment & Consumables{% endblock %}</title>
+  <meta name="description" content="{% block meta_description %}Explore laboratory glassware, consumables and equipment from Comeiin Works. Build your enquiry and request a quotation.{% endblock %}" />
+  <meta name="robots" content="noindex,nofollow" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="512x512" href="{% static 'assets/favicon.png' %}" />
+  <link rel="shortcut icon" href="{% static 'assets/favicon.png' %}" type="image/png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/apple-touch-icon.png' %}" />
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Comeiin">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/future.css' %}?v=14" />
+
+  <!-- OG -->
+  <meta property="og:image" content="{% static 'assets/comeiin-logo.jpeg' %}" />
+
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="{% block body_class %}{% endblock %}" {% block body_attrs %}{% endblock %}>
+  <div id="vanta-page" aria-hidden="true"></div>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="topline">
+    <span>LABORATORY EQUIPMENT &amp; CONSUMABLES</span>
+    <a href="tel:+27112387334">Telephone &nbsp; 011 238 7334</a>
+  </div>
+
+  <header>
+    <a href="{% url 'core:home' %}" class="brand" aria-label="Comeiin Works home">
+      <img src="{% static 'assets/logo.jpeg' %}" alt="Comeiin — Astute, Swift, Passionate" />
+    </a>
+    <nav aria-label="Main navigation">
+      <button class="browse-toggle" aria-expanded="false" aria-controls="category-menu">
+        Our range
+        <span aria-hidden="true">⌄</span>
+      </button>
+      <a href="{% url 'core:about' %}"
+         {% if request.resolver_match.url_name == 'about' %}aria-current="page"{% endif %}>
+        About Comeiin
+      </a>
+      <a href="{% url 'core:home' %}#contact">Contact</a>
+    </nav>
+
+    <!-- Auth (Google + allauth) -->
+    <div class="auth-actions">
+      {% if user.is_authenticated %}
+        <span class="auth-user" title="{{ user.email }}">
+          {{ user.get_short_name|default:user.email }}
+        </span>
+        <form method="post" action="{% url 'account_logout' %}" style="display:inline;margin:0;">
+          {% csrf_token %}
+          <button type="submit" class="quote-open outline">Sign out</button>
+        </form>
+      {% else %}
+        <a href="{% url 'account_login' %}" class="quote-open outline">Sign in</a>
+      {% endif %}
+    </div>
+
+    <button class="quote-open outline">
+      Your quote
+      <span id="count">0</span>
+    </button>
+
+    <div id="category-menu" class="category-menu" hidden>
+      <div class="menu-heading">
+        <p class="eyebrow">EXPLORE OUR RANGE</p>
+        <button class="menu-close" aria-label="Close categories">×</button>
+      </div>
+      <div id="category-links"></div>
+      <a class="text-link" href="{% url 'products:catalogue' %}">Browse all products ↗</a>
+    </div>
+  </header>
+
+  <main id="main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <span>© {% now "Y" %} Comeiin Works (Pty) Ltd.</span>
+    <span>
+      Developed by
+      <a href="https://madenet.netlify.app" target="_blank" rel="noopener">Madenet</a>
+    </span>
+    <span>ASTUTE. SWIFT. PASSIONATE.</span>
+    <a href="{% url 'core:privacy' %}" {% if request.resolver_match.url_name == 'privacy' %}aria-current="page"{% endif %}>
+      Privacy policy
+    </a>
+  </footer>
+
+  {% include 'partials/_quote_dialog.html' %}
+  {% include 'partials/_detail_dialog.html' %}
+
+  <div id="notice" class="notice" role="status" aria-live="polite"></div>
+
+  <!-- ============================================================
+       PWA install banner (hidden by default, shown by JS)
+       ============================================================ -->
+  <div id="pwa-install-banner" class="pwa-install" hidden>
+    <img src="{% static 'assets/pwa/icon-192.png' %}"
+         alt="Comeiin app icon"
+         class="pwa-install-icon" />
+    <div class="pwa-install-text">
+      <strong>Install Comeiin Works</strong>
+      <span>Fast access to the catalogue &amp; quote list — right from your home screen.</span>
+    </div>
+    <button type="button" class="pwa-install-btn" id="pwa-install-accept">Install</button>
+    <button type="button" class="pwa-install-close" id="pwa-install-dismiss" aria-label="Dismiss">×</button>
+  </div>
+
+  <script>
+    window.CW_API = {
+      products:      "{% url 'products:api-products' %}",
+      categories:    "{% url 'products:api-categories' %}",
+      quoteCreate:   "{% url 'quotes:api-quote-create' %}",
+      contactCreate: "{% url 'core:api-contact' %}",
+      productDetail: "/products/api/products/",
+    };
+    window.CW_STATIC    = "/static/";
+    window.CW_CATALOGUE = "{% url 'products:catalogue' %}";
+    window.CW_ABOUT     = "{% url 'core:about' %}";
+    window.CW_PRIVACY   = "{% url 'core:privacy' %}";
+    window.CW_CSRF      = "{{ csrf_token }}";
+    window.CW_USER      = {% if user.is_authenticated %}{ id: {{ user.id }}, email: "{{ user.email|escapejs }}" }{% else %}null{% endif %};
+  </script>
+
+  <script src="{% static 'js/catalogue.js' %}?v=100"></script>
+  <script src="{% static 'js/app.js' %}?v=10"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="{% static 'js/vanta.net.min.js' %}"></script>
+  <script src="{% static 'js/future.js' %}?v=13"></script>
+
+  <!-- ============================================================
+       PWA — service worker + install prompt
+       ============================================================ -->
+  <script>
+    (function () {
+      const banner      = document.getElementById('pwa-install-banner');
+      const acceptBtn   = document.getElementById('pwa-install-accept');
+      const dismissBtn  = document.getElementById('pwa-install-dismiss');
+      const DISMISS_KEY = 'comeiin-pwa-dismissed-until';
+      const DISMISS_DAYS = 7;
+
+      // --- Register service worker ---
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker
+            .register('/serviceworker.js', { scope: '/' })
+            .then((reg) => console.log('[PWA] Service worker registered:', reg.scope))
+            .catch((err) => console.warn('[PWA] Service worker registration failed:', err));
+        });
+      }
+
+      // --- Helpers ---
+      const isStandalone = () =>
+        window.matchMedia('(display-mode: standalone)').matches ||
+        window.navigator.standalone === true;
+
+      const isDismissed = () => {
+        const until = parseInt(localStorage.getItem(DISMISS_KEY) || '0', 10);
+        return until > Date.now();
+      };
+
+      const dismiss = () => {
+        const until = Date.now() + DISMISS_DAYS * 24 * 60 * 60 * 1000;
+        localStorage.setItem(DISMISS_KEY, String(until));
+        banner.hidden = true;
+      };
+
+      // Don't show if already installed or recently dismissed
+      if (isStandalone() || isDismissed()) return;
+
+      // --- Chrome / Edge / Android: capture the install event ---
+      let deferredPrompt = null;
+
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        setTimeout(() => { banner.hidden = false; }, 2000);
+      });
+
+      acceptBtn?.addEventListener('click', async () => {
+        if (!deferredPrompt) {
+          banner.hidden = true;
+          return;
+        }
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        console.log('[PWA] Install outcome:', outcome);
+        deferredPrompt = null;
+        banner.hidden = true;
+        if (outcome === 'accepted' && typeof announce === 'function') {
+          announce('Comeiin Works installed 🎉');
+        }
+      });
+
+      dismissBtn?.addEventListener('click', dismiss);
+
+      // --- iOS Safari fallback ---
+      const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+      const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+      if (isIOS && isSafari && !isStandalone()) {
+        window.addEventListener('load', () => {
+          setTimeout(() => {
+            banner.hidden = false;
+            acceptBtn.textContent = 'How to install';
+            acceptBtn.addEventListener('click', () => {
+              alert(
+                'To install Comeiin Works on your iPhone:\n\n' +
+                '1. Tap the Share button (□↑) at the bottom\n' +
+                '2. Scroll and tap "Add to Home Screen"\n' +
+                '3. Tap "Add"\n\n' +
+                'The Comeiin icon will appear on your home screen.'
+              );
+            }, { once: true });
+          }, 3000);
+        });
+      }
+
+      // --- Auto-hide after successful install ---
+      window.addEventListener('appinstalled', () => {
+        console.log('[PWA] App installed');
+        banner.hidden = true;
+        localStorage.setItem(DISMISS_KEY, String(Date.now() + 365 * 24 * 60 * 60 * 1000));
+      });
+    })();
+  </script>
+
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

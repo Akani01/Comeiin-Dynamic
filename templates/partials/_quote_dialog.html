@@ -1,0 +1,41 @@
+<dialog id="quote">
+  <button class="close" aria-label="Close quote request">×</button>
+  <p class="eyebrow">YOUR REQUIREMENTS</p>
+  <h2>Your quote list.</h2>
+  <button class="continue-shopping">← Continue browsing</button>
+  <p class="muted">
+    Review your list and tell us what you need. Our team will confirm specifications and
+    availability.
+  </p>
+  <p id="quote-feedback" class="quote-feedback" role="status"></p>
+  <div id="quote-items"></div>
+  <form id="quote-form">
+    {% csrf_token %}
+    <label>
+      Your name
+      <input name="name" required autocomplete="name" />
+    </label>
+    <label>
+      Email address
+      <input name="email" type="email" required autocomplete="email" />
+    </label>
+    <label>
+      Company / organisation
+      <input name="company" autocomplete="organization" />
+    </label>
+    <label>
+      Additional requirements
+      <textarea
+        name="notes"
+        rows="3"
+        placeholder="Sizes, models, quantities or another product you need"
+      ></textarea>
+    </label>
+    <button class="button orange" type="submit">Continue to email ↗</button>
+    <p class="image-note">
+      Opens your email app with the enquiry ready for you to review and send. Nothing is sent
+      automatically.
+    </p>
+    <p id="form-status" role="status"></p>
+  </form>
+</dialog>

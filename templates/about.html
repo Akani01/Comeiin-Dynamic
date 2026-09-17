@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Comeiin Works — Laboratory Supply Partner{% endblock %}
+{% block body_class %}about-page{% endblock %}
+
+{% block content %}
+<section class="about-hero section">
+  <div class="about-hero-copy">
+    <p class="eyebrow">
+      <span class="status-dot"></span> ABOUT COMEIIN WORKS
+    </p>
+    <h1>Your laboratory needs a supply partner who keeps up.</h1>
+    <p>We help laboratories source essential equipment, glassware and consumables through one clear, responsive quotation process.</p>
+    <div class="hero-actions">
+      <button class="quote-open button orange">
+        Request a quotation <span>↗</span>
+      </button>
+      <a class="hero-secondary" href="{% url 'products:catalogue' %}">
+        Explore our range <span>→</span>
+      </a>
+    </div>
+  </div>
+  <figure>
+    <img src="{% static 'assets/landing-about-v2.webp' %}" alt="Professional laboratory glassware on a modern laboratory bench" width="1400" height="933" fetchpriority="high" decoding="async" />
+    <span class="about-image-stamp">ASTUTE<br />SWIFT<br /><b>PASSIONATE</b></span>
+  </figure>
+</section>
+
+<div class="about-principles" aria-label="Comeiin Works principles">
+  <span><b>01</b> Understand the requirement</span>
+  <span><b>02</b> Source with purpose</span>
+  <span><b>03</b> Respond with clarity</span>
+</div>
+
+<section class="about-story section">
+  <div>
+    <p class="eyebrow">OUR ROLE</p>
+    <h2>More focus on the work.<br /><em>Less time chasing supplies.</em></h2>
+  </div>
+  <div class="about-story-copy">
+    <p>Comeiin Works supports routine, clinical, educational and specialised laboratories with practical access to the products they need. We bring equipment and consumables into a single enquiry, then confirm specifications, availability and the right fit for the work.</p>
+    <p>Our approach is built around responsive communication. You share the requirement; we help turn it into a clear, tailored quotation.</p>
+  </div>
+</section>
+
+<section class="about-values section">
+  <div class="section-title">
+    <div>
+      <p class="eyebrow">HOW WE WORK</p>
+      <h2>Three values. One dependable experience.</h2>
+    </div>
+    <p>Clear thinking, timely action and care for the result.</p>
+  </div>
+  <div class="about-value-grid">
+    <article>
+      <span>01</span>
+      <h3>Astute.</h3>
+      <p>We pay attention to specifications and ask the practical questions that help identify the right supply option.</p>
+    </article>
+    <article>
+      <span>02</span>
+      <h3>Swift.</h3>
+      <p>We keep enquiries moving with responsive communication and a straightforward request-for-quotation process.</p>
+    </article>
+    <article>
+      <span>03</span>
+      <h3>Passionate.</h3>
+      <p>We care about helping laboratories stay equipped for the work that matters to them.</p>
+    </article>
+  </div>
+</section>
+
+<section class="about-process section">
+  <div class="about-process-visual">
+    <img src="{% static 'assets/landing-hero-v2.webp' %}" alt="Laboratory glassware illuminated in Comeiin blue and orange" width="1600" height="900" loading="lazy" decoding="async" />
+  </div>
+  <div>
+    <p class="eyebrow">ONE CLEAR ROUTE</p>
+    <h2>From requirement to quotation.</h2>
+    <ol>
+      <li><i>01</i><b>Browse or describe</b><span>Select products from the catalogue or tell us what your laboratory requires.</span></li>
+      <li><i>02</i><b>Build one enquiry</b><span>Combine equipment, consumables and quantities in a single request.</span></li>
+      <li><i>03</i><b>Receive a tailored response</b><span>We confirm specifications, availability and pricing for your review.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="about-cta section">
+  <div>
+    <p class="eyebrow">READY WHEN YOU ARE</p>
+    <h2>Tell us what your laboratory needs.</h2>
+  </div>
+  <div>
+    <p>Start with a single item or a complete requirements list. Our team will help shape the next step.</p>
+    <button class="quote-open button orange">
+      Request a quotation <span>↗</span>
+    </button>
+  </div>
+</section>
+{% endblock %}

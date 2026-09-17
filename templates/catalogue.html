@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Product Catalogue | Comeiin Works{% endblock %}
+{% block body_class %}catalogue-page{% endblock %}
+
+{% block content %}
+<section class="catalogue-intro">
+  <div>
+    <p class="eyebrow">THE COMEIIN COLLECTION</p>
+    <h1>Everything your lab needs.<br /><em>Ready to quote.</em></h1>
+  </div>
+  <div class="catalogue-intro-copy">
+    <p>Browse equipment, consumables, liquid handling products and everyday laboratory essentials.</p>
+    <button class="quote-open button orange">
+      Request a quotation <span>↗</span>
+    </button>
+  </div>
+</section>
+
+<section id="catalogue" class="catalogue section">
+  <div class="section-title">
+    <div>
+      <p class="eyebrow">FULL PRODUCT CATALOGUE</p>
+      <h2>Find your essentials.</h2>
+    </div>
+    <p>Select products as you browse.<br />Your quote list stays with you.</p>
+  </div>
+
+  <div class="catalogue-tools">
+    <div class="filters" role="group" aria-label="Filter range">
+      <button aria-pressed="true" data-filter="all">All supplies</button>
+      <button aria-pressed="false" data-filter="Equipment">Equipment</button>
+      <button aria-pressed="false" data-filter="Consumables">Consumables</button>
+      <button aria-pressed="false" data-filter="Liquid handling">Liquid handling</button>
+      <button aria-pressed="false" data-filter="Lab essentials">Lab essentials</button>
+    </div>
+    <label class="search">
+      <span aria-hidden="true">⌕</span>
+      <input id="search" type="search" placeholder="Search the range" aria-label="Search the range" />
+    </label>
+  </div>
+
+  <div class="catalogue-meta">
+    <p id="results" class="result-count" aria-live="polite"></p>
+    <div class="refinements">
+      <label>
+        Show
+        <select id="listing-type">
+          <option value="all">Products &amp; ranges</option>
+          <option value="product">Individual products</option>
+          <option value="range">Supply ranges</option>
+        </select>
+      </label>
+      <label>
+        Sort by
+        <select id="sort-order">
+          <option value="review">Catalogue order</option>
+          <option value="az">Name: A–Z</option>
+          <option value="za">Name: Z–A</option>
+        </select>
+      </label>
+    </div>
+  </div>
+
+  <div id="active-filters" class="active-filters" hidden></div>
+  <div id="grid" class="grid"></div>
+  <div id="empty" hidden>
+    <h3>No matching supplies</h3>
+    <p>Try another search, or send our team your requirements.</p>
+    <button class="quote-open button navy">Request a product</button>
+  </div>
+  <p class="image-note">
+    Product images are illustrative unless supplied by the client. Availability, pricing and final specifications are confirmed with your quotation.
+  </p>
+</section>
+
+<section class="catalogue-cta section">
+  <p class="eyebrow">CAN'T FIND THE EXACT ITEM?</p>
+  <h2>Tell us what your laboratory needs.</h2>
+  <button class="quote-open button orange">
+    Start a quotation <span>↗</span>
+  </button>
+</section>
+{% endblock %}

@@ -35,6 +35,8 @@ DEBUG = config('DEBUG', default=True, cast=bool)
 ALLOWED_HOSTS = [
     'comeiinworks.co.za',
     'www.comeiinworks.co.za',
+    'comeiin.co.za',
+    'www.comeiin.co.za',
     '127.0.0.1',
     'localhost',
     '0.0.0.0',
@@ -49,6 +51,8 @@ ALLOWED_HOSTS = [
 CSRF_TRUSTED_ORIGINS = [
     'https://comeiin.co.za',
     'https://www.comeiin.co.za',
+    'https://comeiinworks.co.za',
+    'https://www.comeiinworks.co.za',
     'https://*.railway.app',
     'http://127.0.0.1:8000',
     'http://localhost:8000',

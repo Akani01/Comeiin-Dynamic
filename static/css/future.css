@@ -2293,3 +2293,97 @@ body > header {
     font-size: 10px;
   }
 }
+
+/* ============================================================
+   LABORATORY SECTION (homepage)
+   ============================================================ */
+.laboratory {
+  padding: 80px 0;
+  background: linear-gradient(180deg, #ffffff 0%, #faf8f2 100%);
+}
+
+.laboratory-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.laboratory-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 44px;
+}
+
+.laboratory-head h2 {
+  color: var(--cw-navy, #0f172a);
+  font-size: clamp(1.5rem, 2.4vw + 1rem, 2.2rem);
+  margin: 8px 0 12px;
+  line-height: 1.2;
+}
+
+.laboratory-head p {
+  color: var(--cw-muted, #64748b);
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 560px;
+  margin: 0;
+}
+
+.laboratory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.laboratory-card {
+  padding: 28px 24px;
+  background: #fff;
+  border: 1px solid var(--cw-border, #e8e2d4);
+  border-radius: 16px;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.06);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.laboratory-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.10);
+  border-color: rgba(215, 169, 75, 0.45);
+}
+
+.laboratory-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(240, 211, 138, 0.35), rgba(215, 169, 75, 0.20));
+  color: var(--cw-gold, #d7a94b);
+  font-size: 1.25rem;
+  margin-bottom: 16px;
+}
+
+.laboratory-card h3 {
+  color: var(--cw-navy, #0f172a);
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.laboratory-card p {
+  color: var(--cw-muted, #64748b);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .laboratory { padding: 60px 0; }
+  .laboratory-head { margin-bottom: 32px; }
+  .laboratory-head .button { width: 100%; justify-content: center; }
+  .laboratory-card { padding: 22px 18px; }
+}

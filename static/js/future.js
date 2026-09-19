@@ -6,8 +6,6 @@
 
 /* ---- Django-provided URLs (fallbacks for local/static use) ---- */
 const CATALOGUE_URL = window.CW_CATALOGUE || '/products/';
-const ABOUT_URL     = window.CW_ABOUT     || '/about/';
-const PRIVACY_URL   = window.CW_PRIVACY   || '/privacy/';
 
 /* ============================================================
    1. Guided finder → routes into the catalogue filters
@@ -83,38 +81,7 @@ document.querySelectorAll('.contact-details .whatsapp').forEach((link) => {
 });
 
 /* ============================================================
-   4. Rewrite legacy static links to Django URLs
-   (Only affects anchors that still point to .html pages)
-   ============================================================ */
-document
-  .querySelectorAll(
-    'header nav a[href="#about"], ' +
-    'header nav a[href="about.html"], ' +
-    'header nav a[href="index.html#about"], ' +
-    'a.text-link[href="about.html"]'
-  )
-  .forEach((link) => (link.href = ABOUT_URL));
-
-document
-  .querySelectorAll(
-    'footer a[href$="/privacy.html"], ' +
-    'footer a[href="privacy.html"], ' +
-    'header a[href="privacy.html"]'
-  )
-  .forEach((link) => (link.href = PRIVACY_URL));
-
-document
-  .querySelectorAll('a[href="catalogue.html"], a[href^="catalogue.html?"]')
-  .forEach((link) => {
-    // Preserve query string if present
-    const original = link.getAttribute('href');
-    const queryIndex = original.indexOf('?');
-    const query = queryIndex >= 0 ? original.substring(queryIndex) : '';
-    link.href = CATALOGUE_URL + query;
-  });
-
-/* ============================================================
-   5. WhatsApp concierge widget
+   4. WhatsApp concierge widget
    ============================================================ */
 const whatsappMessage =
   'Hello Comeiin Works, I would like help with a laboratory supply quotation.';
@@ -167,14 +134,37 @@ whatsappLaunch.addEventListener('click', () =>
 setWhatsAppOpen(false);
 
 /* ============================================================
-   6. Vanta animated background
+   5. Vanta animated background
+   Wrapped in DOM-ready guard + diagnostic logging so we can
+   tell exactly WHY it fails if it ever stops rendering.
    ============================================================ */
-const vantaPage = document.querySelector('#vanta-page');
-if (
-  vantaPage &&
-  !matchMedia('(prefers-reduced-motion: reduce)').matches &&
-  window.VANTA?.NET
-) {
+function initVanta() {
+  const vantaPage = document.querySelector('#vanta-page');
+
+  if (!vantaPage) {
+    console.warn('[Vanta] #vanta-page not found in DOM — check base.html');
+    return;
+  }
+
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    console.info('[Vanta] Skipped — user prefers reduced motion');
+    return;
+  }
+
+  if (!window.THREE) {
+    console.error('[Vanta] THREE.js not loaded — check the <script> tag order in base.html');
+    return;
+  }
+
+  if (!window.VANTA || !window.VANTA.NET) {
+    console.error('[Vanta] VANTA.NET not available', {
+      hasVanta: !!window.VANTA,
+      hasNet: !!(window.VANTA && window.VANTA.NET),
+      hasTHREE: !!window.THREE,
+    });
+    return;
+  }
+
   try {
     const vantaEffect = VANTA.NET({
       el: vantaPage,
@@ -188,8 +178,16 @@ if (
       spacing: 20,
       showDots: true,
     });
+
+    console.info('[Vanta] Initialised ✅');
     addEventListener('pagehide', () => vantaEffect.destroy(), { once: true });
   } catch (error) {
-    console.warn('Animated background unavailable; using the hero image.', error);
+    console.error('[Vanta] Failed to initialise:', error);
   }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initVanta);
+} else {
+  initVanta();
 }

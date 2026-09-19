@@ -127,7 +127,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-
+    'django.contrib.redirects',
     # REST API
     'rest_framework',
     'corsheaders',
@@ -336,7 +336,9 @@ PWA_SERVICE_WORKER_PATH = os.path.join(
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'core.middleware.LegacyHtmlRedirectMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.contrib.redirects.middleware.RedirectFallbackMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',

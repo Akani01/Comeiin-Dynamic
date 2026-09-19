@@ -6,6 +6,9 @@
 {% block content %}
 <section id="product-view" class="section" hidden></section>
 
+<!-- ============================================================
+     HERO
+     ============================================================ -->
 <section class="hero">
   <div class="hero-copy">
     <p class="eyebrow">
@@ -51,6 +54,9 @@
   <span><b>03</b> Get a tailored quotation</span>
 </div>
 
+<!-- ============================================================
+     DISCOVERY
+     ============================================================ -->
 <section class="discovery section" id="finder">
   <div class="section-title">
     <div>
@@ -111,6 +117,9 @@
   </div>
 </section>
 
+<!-- ============================================================
+     MANIFESTO
+     ============================================================ -->
 <section class="manifesto section">
   <div class="manifesto-orbit" aria-hidden="true">
     <span class="manifesto-core">RFQ</span>
@@ -134,6 +143,62 @@
   </div>
 </section>
 
+<!-- ============================================================
+     LABORATORY — NEW SECTION
+     ============================================================ -->
+<section id="laboratory" class="laboratory section">
+  <div class="laboratory-inner">
+
+    <div class="laboratory-head">
+      <div>
+        <p class="eyebrow">
+          <span class="status-dot"></span>
+          OUR LABORATORY
+        </p>
+        <h2>Where supply meets capability.</h2>
+        <p>
+          Beyond supply — Comeiin Works supports laboratories with sample handling,
+          glassware preparation, quality control and specialised laboratory work
+          across South Africa.
+        </p>
+      </div>
+      <a class="button orange" href="{% url 'core:laboratory' %}">
+        Explore our laboratory <span>↗</span>
+      </a>
+    </div>
+
+    <div class="laboratory-grid">
+      <div class="laboratory-card">
+        <div class="laboratory-icon"><i class="fas fa-flask"></i></div>
+        <h3>Glassware Preparation</h3>
+        <p>Cleaning, calibration checks and preparation of volumetric glassware for routine and specialised laboratory work.</p>
+      </div>
+
+      <div class="laboratory-card">
+        <div class="laboratory-icon"><i class="fas fa-vial"></i></div>
+        <h3>Sample Handling</h3>
+        <p>Safe handling, labelling, storage and preparation of samples for testing and analysis.</p>
+      </div>
+
+      <div class="laboratory-card">
+        <div class="laboratory-icon"><i class="fas fa-microscope"></i></div>
+        <h3>Quality Control</h3>
+        <p>Routine quality checks, specification verification and consistency testing of supplied consumables.</p>
+      </div>
+
+      <div class="laboratory-card">
+        <div class="laboratory-icon"><i class="fas fa-temperature-high"></i></div>
+        <h3>Specialised Support</h3>
+        <p>Temperature-controlled storage, sterilisation support and specialised equipment verification.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     ABOUT
+     ============================================================ -->
 <section id="about" class="about section">
   <div class="about-art">
     <img src="{% static 'assets/landing-about-v2.webp' %}" alt="Professional selection of laboratory glassware" loading="lazy" width="1400" height="933" />
@@ -163,6 +228,9 @@
   </div>
 </section>
 
+<!-- ============================================================
+     CONTACT
+     ============================================================ -->
 <section id="contact" class="contact section">
   <div>
     <p class="eyebrow">LET’S GET TO WORK</p>
@@ -176,7 +244,7 @@
     <a href="tel:+27112387334">Telephone: 011 238 7334</a>
     <p>344 Sonneblom Road<br />Country View, Midrand, 1687</p>
     <a class="whatsapp"
-       href="https://wa.me/27844106544?text=Hello%20Comeiin%20Works%2C%20I%20would%20like%20help%20with%20a%20quotation."
+       href="https://wa.me/27844106554?text=Hello%20Comeiin%20Works%2C%20I%20would%20like%20help%20with%20a%20quotation."
        target="_blank" rel="noopener">
       WhatsApp: 084 410 6544 ↗
     </a>

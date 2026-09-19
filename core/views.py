@@ -18,6 +18,7 @@ from .serializers import (
 )
 
 
+
 # ============================================================
 # TEMPLATE (HTML) VIEWS
 # ============================================================
@@ -212,3 +213,42 @@ def pwa_sw(request):
     except FileNotFoundError:
         print(f"[PWA] ❌ SW not found at: {sw_path}")
         return HttpResponse('// service worker not found', status=404, content_type='application/javascript')
+
+# core/views.py
+
+# ============================================================
+# LABORATORY PAGE
+# ============================================================
+
+def laboratory_view(request):
+    """Laboratory capabilities page."""
+    from products.models import Category, Product
+
+    context = {
+        'product_count': Product.objects.filter(is_active=True).count(),
+        'categories': Category.objects.filter(is_active=True),
+    }
+    return render(request, 'laboratory.html', context)
+
+
+# ============================================================
+# ENGINEERING PAGE
+# ============================================================
+def engineering_view(request):
+    from products.models import Category, Product
+    products = (
+        Product.objects
+               .filter(is_active=True)
+               .select_related('category')
+               .order_by('category__name', 'name')
+    )
+    context = {
+        'categories': Category.objects.filter(is_active=True),
+        'product_count': products.count(),
+        'category_count': Category.objects.filter(is_active=True).count(),
+        'products': products,
+    }
+    return render(request, 'engineering.html', context)
+
+def contact_redirect(request):
+    return redirect('/#contact')

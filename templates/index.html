@@ -7,51 +7,157 @@
 <section id="product-view" class="section" hidden></section>
 
 <!-- ============================================================
-     HERO
+     HERO CAROUSEL  (wraps hero copy, image, and service strip)
      ============================================================ -->
-<section class="hero">
-  <div class="hero-copy">
-    <p class="eyebrow">
-      <span class="status-dot"></span>
-      THE NEXT CHAPTER OF YOUR LAB
-    </p>
-    <h1>
-      Great science.<br />
-      Starts with<br />
-      <em>the right essentials.</em>
-    </h1>
-    <p class="intro">
-      Equipment, glassware and consumables.<br />
-      Connected to your work. Sourced with purpose.
-    </p>
-    <div class="hero-actions">
-      <button class="quote-open button orange" type="button">
-        Request a quotation <span>↗</span>
-      </button>
-      <a class="hero-secondary" href="{% url 'products:catalogue' %}">
-        Browse the catalogue <span>→</span>
-      </a>
+<div class="hero-carousel" aria-roledescription="carousel" aria-label="Comeiin Works introduction">
+  <div class="hc-stage" aria-live="off">
+
+    <!-- SLIDE 1 — card1.jpeg -->
+    <div class="hero-slide is-active" role="group" aria-roledescription="slide" aria-label="1 of 3">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            <span class="status-dot"></span>
+            THE NEXT CHAPTER OF YOUR LAB
+          </p>
+          <h1 class="hero-h1">
+            Great science.<br />
+            Starts with<br />
+            <em>the right essentials.</em>
+          </h1>
+          <p class="intro">
+            Equipment, glassware and consumables.<br />
+            Connected to your work. Sourced with purpose.
+          </p>
+          <div class="hero-actions">
+            <button class="quote-open button orange" type="button">
+              Request a quotation <span>↗</span>
+            </button>
+            <a class="hero-secondary" href="{% url 'products:catalogue' %}">
+              Browse the catalogue <span>→</span>
+            </a>
+          </div>
+          <div class="hero-foot">
+            ASTUTE <span>•</span> SWIFT <span>•</span> PASSIONATE
+          </div>
+        </div>
+        <figure>
+          <img src="{% static 'images/card1.jpeg' %}"
+               alt="Comeiin Works laboratory highlight 1"
+               width="1600" height="900" fetchpriority="high" decoding="async" />
+          <div class="orbit" aria-hidden="true"></div>
+          <div class="image-label">
+            <span class="status-dot"></span> EQUIPPED FOR DISCOVERY
+          </div>
+          <figcaption>Every detail. A new possibility.</figcaption>
+        </figure>
+      </section>
     </div>
-    <div class="hero-foot">
-      ASTUTE <span>•</span> SWIFT <span>•</span> PASSIONATE
+
+    <!-- SLIDE 2 — card2.jpeg -->
+    <div class="hero-slide" role="group" aria-roledescription="slide" aria-label="2 of 3">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            <span class="status-dot"></span>
+            THE NEXT CHAPTER OF YOUR LAB
+          </p>
+          <h1 class="hero-h1">
+            Great science.<br />
+            Starts with<br />
+            <em>the right essentials.</em>
+          </h1>
+          <p class="intro">
+            Equipment, glassware and consumables.<br />
+            Connected to your work. Sourced with purpose.
+          </p>
+          <div class="hero-actions">
+            <button class="quote-open button orange" type="button">
+              Request a quotation <span>↗</span>
+            </button>
+            <a class="hero-secondary" href="{% url 'products:catalogue' %}">
+              Browse the catalogue <span>→</span>
+            </a>
+          </div>
+          <div class="hero-foot">
+            ASTUTE <span>•</span> SWIFT <span>•</span> PASSIONATE
+          </div>
+        </div>
+        <figure>
+          <img src="{% static 'images/card2.jpeg' %}"
+               alt="Comeiin Works laboratory highlight 2"
+               width="1600" height="900" loading="lazy" decoding="async" />
+          <div class="orbit" aria-hidden="true"></div>
+          <div class="image-label">
+            <span class="status-dot"></span> EQUIPPED FOR DISCOVERY
+          </div>
+          <figcaption>Every detail. A new possibility.</figcaption>
+        </figure>
+      </section>
+    </div>
+
+    <!-- SLIDE 3 — landing-hero-v2.webp -->
+    <div class="hero-slide" role="group" aria-roledescription="slide" aria-label="3 of 3">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">
+            <span class="status-dot"></span>
+            THE NEXT CHAPTER OF YOUR LAB
+          </p>
+          <h1 class="hero-h1">
+            Great science.<br />
+            Starts with<br />
+            <em>the right essentials.</em>
+          </h1>
+          <p class="intro">
+            Equipment, glassware and consumables.<br />
+            Connected to your work. Sourced with purpose.
+          </p>
+          <div class="hero-actions">
+            <button class="quote-open button orange" type="button">
+              Request a quotation <span>↗</span>
+            </button>
+            <a class="hero-secondary" href="{% url 'products:catalogue' %}">
+              Browse the catalogue <span>→</span>
+            </a>
+          </div>
+          <div class="hero-foot">
+            ASTUTE <span>•</span> SWIFT <span>•</span> PASSIONATE
+          </div>
+        </div>
+        <figure>
+          <img src="{% static 'assets/landing-hero-v2.webp' %}"
+               alt="Professional laboratory glassware in a blue studio setting"
+               width="1600" height="900" loading="lazy" decoding="async" />
+          <div class="orbit" aria-hidden="true"></div>
+          <div class="image-label">
+            <span class="status-dot"></span> EQUIPPED FOR DISCOVERY
+          </div>
+          <figcaption>Every detail. A new possibility.</figcaption>
+        </figure>
+      </section>
+    </div>
+
+  </div>
+
+  <div class="hc-controls">
+    <div class="hc-segments" role="tablist" aria-label="Choose slide">
+      <button class="hc-seg is-active" type="button" role="tab" aria-selected="true"  aria-label="Go to slide 1"><i></i></button>
+      <button class="hc-seg"           type="button" role="tab" aria-selected="false" aria-label="Go to slide 2"><i></i></button>
+      <button class="hc-seg"           type="button" role="tab" aria-selected="false" aria-label="Go to slide 3"><i></i></button>
+    </div>
+    <span class="hc-count" aria-hidden="true"><b>01</b> / 03</span>
+    <div class="hc-arrows">
+      <button class="hc-btn hc-prev" type="button" aria-label="Previous slide">←</button>
+      <button class="hc-btn hc-next" type="button" aria-label="Next slide">→</button>
     </div>
   </div>
-  <figure>
-    <img src="{% static 'assets/landing-hero-v2.webp' %}"
-         alt="Professional laboratory glassware in a blue studio setting"
-         width="1600" height="900" fetchpriority="high" decoding="async" />
-    <div class="orbit" aria-hidden="true"></div>
-    <div class="image-label">
-      <span class="status-dot"></span> EQUIPPED FOR DISCOVERY
-    </div>
-    <figcaption>Every detail. A new possibility.</figcaption>
-  </figure>
-</section>
 
-<div class="service-strip" aria-label="How to request supplies">
-  <span><b>01</b> Find your laboratory essentials</span>
-  <span><b>02</b> Build a product enquiry</span>
-  <span><b>03</b> Get a tailored quotation</span>
+  <div class="service-strip" aria-label="How to request supplies">
+    <span><b>01</b> Find your laboratory essentials</span>
+    <span><b>02</b> Build a product enquiry</span>
+    <span><b>03</b> Get a tailored quotation</span>
+  </div>
 </div>
 
 <!-- ============================================================
@@ -144,7 +250,7 @@
 </section>
 
 <!-- ============================================================
-     LABORATORY — NEW SECTION
+     LABORATORY
      ============================================================ -->
 <section id="laboratory" class="laboratory section">
   <div class="laboratory-inner">
@@ -244,10 +350,262 @@
     <a href="tel:+27112387334">Telephone: 011 238 7334</a>
     <p>344 Sonneblom Road<br />Country View, Midrand, 1687</p>
     <a class="whatsapp"
-       href="https://wa.me/27844106554?text=Hello%20Comeiin%20Works%2C%20I%20would%20like%20help%20with%20a%20quotation."
+       href="https://wa.me/27844106544?text=Hello%20Comeiin%20Works%2C%20I%20would%20like%20help%20with%20a%20quotation."
        target="_blank" rel="noopener">
       WhatsApp: 084 410 6544 ↗
     </a>
+
+    <div class="social-links" aria-label="Comeiin Works on social media">
+      <a href="https://www.linkedin.com/in/comeiin-works-631519437/" target="_blank" rel="noopener noreferrer" aria-label="Comeiin Works on LinkedIn">
+        <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=YOUR_PROFILE_ID" target="_blank" rel="noopener noreferrer" aria-label="Comeiin Works on Facebook">
+        <i class="fab fa-facebook-f" aria-hidden="true"></i>
+      </a>
+      <a href="https://www.instagram.com/comeiinworks/" target="_blank" rel="noopener noreferrer" aria-label="Comeiin Works on Instagram">
+        <i class="fab fa-instagram" aria-hidden="true"></i>
+      </a>
+    </div>
   </div>
 </section>
+
+<!-- ============================================================
+     HERO CAROUSEL + SOCIAL STYLES
+     ============================================================ -->
+<style>
+  /* ---------- hero-carousel wrapper ---------- */
+  .hero-carousel {
+    position: relative;
+    --hc-accent: #ff7a1a;
+    --hc-dur: 7s;
+  }
+
+  /* ---------- stage: slides stacked in one grid cell, crossfade ---------- */
+  .hc-stage {
+    display: grid;
+    /* Lock the stage to a consistent height so all slides render equal */
+    align-items: stretch;
+  }
+
+  .hero-slide {
+    grid-area: 1 / 1;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .9s ease, visibility 0s linear .9s;
+    /* Force all slides into the SAME layout box */
+    width: 100%;
+    min-width: 0;
+  }
+  .hero-slide.is-active {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity .9s ease, visibility 0s;
+  }
+
+  /* ---------- equal sizing for every hero section across slides ---------- */
+  .hero-slide .hero {
+    /* Same min-height on every slide so nothing shifts when the image changes */
+    min-height: clamp(560px, 72vh, 760px);
+  }
+
+  /* Image container — equal aspect for all slides */
+  .hero-slide figure {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    width: 100%;
+    margin: 0;
+  }
+
+  /* Every image fills the same box, cropped consistently */
+  .hero-slide figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transform: scale(1.05);
+    transition: transform 1.6s cubic-bezier(.2, .7, .2, 1);
+  }
+  .hero-slide.is-active figure img { transform: scale(1); }
+
+  /* Force the title to render as a heading regardless of tag, on every slide */
+  .hero-h1 {
+    margin: 0;
+    font: inherit;
+    display: block;
+  }
+
+  /* ---------- controls ---------- */
+  .hc-controls {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: 14px clamp(16px, 4vw, 48px);
+  }
+  .hc-segments { display: flex; gap: 8px; flex: 1; max-width: 360px; }
+  .hc-seg {
+    position: relative;
+    flex: 1;
+    height: 22px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+  .hc-seg::before {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; top: 50%;
+    height: 2px;
+    transform: translateY(-50%);
+    background: currentColor;
+    opacity: .18;
+    border-radius: 2px;
+  }
+  .hc-seg i {
+    position: absolute;
+    left: 0; top: 50%;
+    height: 2px;
+    width: 0;
+    transform: translateY(-50%);
+    background: var(--hc-accent);
+    border-radius: 2px;
+    box-shadow: 0 0 10px var(--hc-accent);
+  }
+  .hc-seg.is-active i { animation: hc-fill var(--hc-dur) linear forwards; }
+  .hc-seg.is-done i { width: 100%; box-shadow: none; opacity: .5; }
+  @keyframes hc-fill { from { width: 0; } to { width: 100%; } }
+  .hero-carousel:hover .hc-seg.is-active i,
+  .hero-carousel:focus-within .hc-seg.is-active i { animation-play-state: paused; }
+
+  .hc-count {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: .12em;
+    font-size: .8rem;
+    opacity: .7;
+  }
+  .hc-count b { font-weight: 600; opacity: 1; color: var(--hc-accent); }
+  .hc-arrows { display: flex; gap: 8px; margin-left: auto; }
+  .hc-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid currentColor;
+    background: transparent;
+    color: inherit;
+    font-size: 1.05rem;
+    cursor: pointer;
+    opacity: .55;
+    transition: opacity .2s, background .2s, color .2s, border-color .2s;
+  }
+  .hc-btn:hover {
+    opacity: 1;
+    background: var(--hc-accent);
+    border-color: var(--hc-accent);
+    color: #fff;
+  }
+  .hc-btn:focus-visible,
+  .hc-seg:focus-visible,
+  .social-links a:focus-visible { outline: 3px solid var(--hc-accent); outline-offset: 3px; }
+
+  @media (max-width: 600px) {
+    .hc-controls { gap: 12px; }
+    .hc-count { display: none; }
+    .hc-btn { width: 38px; height: 38px; }
+    .hero-slide .hero { min-height: auto; }
+    .hero-slide figure { aspect-ratio: 4 / 3; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-slide, .hero-slide.is-active { transition: none; }
+    .hero-slide figure img { transition: none; transform: none; }
+    .hc-seg.is-active i { animation: none; width: 100%; }
+  }
+
+  /* ---------- social links ---------- */
+  .social-links { display: flex; gap: 12px; margin-top: 16px; }
+  .social-links a {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid currentColor;
+    transition: background .2s, border-color .2s, color .2s, transform .2s;
+  }
+  .social-links a:hover {
+    background: #ff7a1a;
+    border-color: #ff7a1a;
+    color: #fff;
+    transform: translateY(-3px);
+  }
+</style>
+
+<!-- ============================================================
+     HERO CAROUSEL SCRIPT
+     ============================================================ -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var root = document.querySelector('.hero-carousel');
+  if (!root) return;
+
+  var slides = root.querySelectorAll('.hero-slide');
+  var segs = root.querySelectorAll('.hc-seg');
+  var count = root.querySelector('.hc-count b');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var index = 0;
+
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+  function go(i) {
+    index = (i + slides.length) % slides.length;
+
+    slides.forEach(function (sl, n) {
+      var on = n === index;
+      sl.classList.toggle('is-active', on);
+      sl.setAttribute('aria-hidden', on ? 'false' : 'true');
+      if (on) { sl.removeAttribute('inert'); }
+      else { sl.setAttribute('inert', ''); }
+    });
+
+    segs.forEach(function (sg, n) {
+      sg.classList.remove('is-active', 'is-done');
+      sg.setAttribute('aria-selected', n === index ? 'true' : 'false');
+      if (n < index) sg.classList.add('is-done');
+    });
+
+    void root.offsetWidth;               // force reflow so the fill animation restarts
+    segs[index].classList.add('is-active');
+    count.textContent = pad(index + 1);
+  }
+
+  segs.forEach(function (sg, n) {
+    sg.addEventListener('click', function () { go(n); });
+    sg.querySelector('i').addEventListener('animationend', function () {
+      if (sg.classList.contains('is-active')) go(index + 1);
+    });
+  });
+
+  root.querySelector('.hc-prev').addEventListener('click', function () { go(index - 1); });
+  root.querySelector('.hc-next').addEventListener('click', function () { go(index + 1); });
+
+  root.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft')  go(index - 1);
+    if (e.key === 'ArrowRight') go(index + 1);
+  });
+
+  var startX = null;
+  root.addEventListener('touchstart', function (e) {
+    startX = e.touches[0].clientX;
+  }, { passive: true });
+  root.addEventListener('touchend', function (e) {
+    if (startX === null) return;
+    var dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 50) go(index + (dx < 0 ? 1 : -1));
+    startX = null;
+  });
+
+  go(0);
+});
+</script>
 {% endblock %}

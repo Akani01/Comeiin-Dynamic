@@ -250,7 +250,7 @@
 </section>
 
 <!-- ============================================================
-     LABORATORY
+     LABORATORY  (icons are inline SVG — no Font Awesome needed)
      ============================================================ -->
 <section id="laboratory" class="laboratory section">
   <div class="laboratory-inner">
@@ -274,29 +274,60 @@
     </div>
 
     <div class="laboratory-grid">
+
       <div class="laboratory-card">
-        <div class="laboratory-icon"><i class="fas fa-flask"></i></div>
+        <div class="laboratory-icon">
+          <!-- Volumetric flask with sparkle -->
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M9 3h6M10 3v5.5L5.5 18a2 2 0 0 0 1.8 3h9.4a2 2 0 0 0 1.8-3L14 8.5V3"/>
+            <path d="M7.5 14h9"/>
+            <path d="M19 3v3M17.5 4.5h3"/>
+          </svg>
+        </div>
         <h3>Glassware Preparation</h3>
         <p>Cleaning, calibration checks and preparation of volumetric glassware for routine and specialised laboratory work.</p>
       </div>
 
       <div class="laboratory-card">
-        <div class="laboratory-icon"><i class="fas fa-vial"></i></div>
+        <div class="laboratory-icon">
+          <!-- Sample tubes in a rack -->
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M4 3h6M5 3v14a2 2 0 0 0 4 0V3"/>
+            <path d="M14 3h6M15 3v14a2 2 0 0 0 4 0V3"/>
+            <path d="M5 11h4M15 8h4"/>
+            <path d="M3 22h18"/>
+          </svg>
+        </div>
         <h3>Sample Handling</h3>
         <p>Safe handling, labelling, storage and preparation of samples for testing and analysis.</p>
       </div>
 
       <div class="laboratory-card">
-        <div class="laboratory-icon"><i class="fas fa-microscope"></i></div>
+        <div class="laboratory-icon">
+          <!-- Magnifier with check mark -->
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="11" cy="11" r="7"/>
+            <path d="M21 21l-4.3-4.3"/>
+            <path d="M8 11l2 2 4-4"/>
+          </svg>
+        </div>
         <h3>Quality Control</h3>
         <p>Routine quality checks, specification verification and consistency testing of supplied consumables.</p>
       </div>
 
       <div class="laboratory-card">
-        <div class="laboratory-icon"><i class="fas fa-temperature-high"></i></div>
+        <div class="laboratory-icon">
+          <!-- Thermometer with scale -->
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M14 14.76V5a3 3 0 0 0-6 0v9.76a5 5 0 1 0 6 0z"/>
+            <path d="M11 9v8"/>
+            <path d="M18 6h3M18 10h3M18 14h3"/>
+          </svg>
+        </div>
         <h3>Specialised Support</h3>
         <p>Temperature-controlled storage, sterilisation support and specialised equipment verification.</p>
       </div>
+
     </div>
 
   </div>
@@ -335,7 +366,7 @@
 </section>
 
 <!-- ============================================================
-     CONTACT
+     CONTACT  (social icons are inline SVG — no Font Awesome needed)
      ============================================================ -->
 <section id="contact" class="contact section">
   <div>
@@ -357,20 +388,31 @@
 
     <div class="social-links" aria-label="Comeiin Works on social media">
       <a href="https://www.linkedin.com/in/comeiin-works-631519437/" target="_blank" rel="noopener noreferrer" aria-label="Comeiin Works on LinkedIn">
-        <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/>
+          <rect x="2" y="9" width="4" height="12"/>
+          <circle cx="4" cy="4" r="2"/>
+        </svg>
       </a>
+      <!-- TODO: replace YOUR_PROFILE_ID with the real Facebook page/profile ID or URL -->
       <a href="https://www.facebook.com/profile.php?id=YOUR_PROFILE_ID" target="_blank" rel="noopener noreferrer" aria-label="Comeiin Works on Facebook">
-        <i class="fab fa-facebook-f" aria-hidden="true"></i>
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+        </svg>
       </a>
       <a href="https://www.instagram.com/comeiinworks/" target="_blank" rel="noopener noreferrer" aria-label="Comeiin Works on Instagram">
-        <i class="fab fa-instagram" aria-hidden="true"></i>
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <rect x="2" y="2" width="20" height="20" rx="5"/>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+          <path d="M17.5 6.5h.01"/>
+        </svg>
       </a>
     </div>
   </div>
 </section>
 
 <!-- ============================================================
-     HERO CAROUSEL + SOCIAL STYLES
+     HERO CAROUSEL + ICON + SOCIAL STYLES
      ============================================================ -->
 <style>
   /* ---------- hero-carousel wrapper ---------- */
@@ -383,7 +425,6 @@
   /* ---------- stage: slides stacked in one grid cell, crossfade ---------- */
   .hc-stage {
     display: grid;
-    /* Lock the stage to a consistent height so all slides render equal */
     align-items: stretch;
   }
 
@@ -392,7 +433,6 @@
     opacity: 0;
     visibility: hidden;
     transition: opacity .9s ease, visibility 0s linear .9s;
-    /* Force all slides into the SAME layout box */
     width: 100%;
     min-width: 0;
   }
@@ -404,11 +444,9 @@
 
   /* ---------- equal sizing for every hero section across slides ---------- */
   .hero-slide .hero {
-    /* Same min-height on every slide so nothing shifts when the image changes */
     min-height: clamp(560px, 72vh, 760px);
   }
 
-  /* Image container — equal aspect for all slides */
   .hero-slide figure {
     position: relative;
     overflow: hidden;
@@ -417,7 +455,6 @@
     margin: 0;
   }
 
-  /* Every image fills the same box, cropped consistently */
   .hero-slide figure img {
     width: 100%;
     height: 100%;
@@ -429,7 +466,6 @@
   }
   .hero-slide.is-active figure img { transform: scale(1); }
 
-  /* Force the title to render as a heading regardless of tag, on every slide */
   .hero-h1 {
     margin: 0;
     font: inherit;
@@ -507,7 +543,7 @@
   }
   .hc-btn:focus-visible,
   .hc-seg:focus-visible,
-  .social-links a:focus-visible { outline: 3px solid var(--hc-accent); outline-offset: 3px; }
+  .social-links a:focus-visible { outline: 3px solid var(--hc-accent, #ff7a1a); outline-offset: 3px; }
 
   @media (max-width: 600px) {
     .hc-controls { gap: 12px; }
@@ -522,6 +558,43 @@
     .hc-seg.is-active i { animation: none; width: 100%; }
   }
 
+  /* ---------- laboratory card icons (inline SVG) ---------- */
+  .laboratory-icon {
+    display: grid;
+    place-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 16px;
+    margin-bottom: 18px;
+    color: #ff7a1a;
+    background: rgba(255, 122, 26, .12);
+    border: 1px solid rgba(255, 122, 26, .3);
+    transition: background .25s, color .25s, transform .25s;
+  }
+  .laboratory-card:hover .laboratory-icon {
+    background: #ff7a1a;
+    color: #fff;
+    transform: translateY(-3px) rotate(-4deg);
+  }
+
+  /* shared SVG icon styling (lab cards + social links) */
+  .laboratory-icon svg,
+  .social-links svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    display: block;
+  }
+  .laboratory-icon svg { width: 30px; height: 30px; }
+  .social-links svg    { width: 20px; height: 20px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .laboratory-icon,
+    .laboratory-card:hover .laboratory-icon { transition: none; transform: none; }
+  }
+
   /* ---------- social links ---------- */
   .social-links { display: flex; gap: 12px; margin-top: 16px; }
   .social-links a {
@@ -531,6 +604,7 @@
     height: 44px;
     border-radius: 50%;
     border: 1px solid currentColor;
+    color: inherit;
     transition: background .2s, border-color .2s, color .2s, transform .2s;
   }
   .social-links a:hover {
@@ -552,7 +626,6 @@ document.addEventListener('DOMContentLoaded', function () {
   var slides = root.querySelectorAll('.hero-slide');
   var segs = root.querySelectorAll('.hc-seg');
   var count = root.querySelector('.hc-count b');
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var index = 0;
 
   function pad(n) { return (n < 10 ? '0' : '') + n; }

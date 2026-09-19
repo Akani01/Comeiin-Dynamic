@@ -40,14 +40,13 @@
     #vanta-page {
       position: fixed;
       inset: 0;
-      z-index: -1;                /* CHANGED: was 0 → -1 so it sits behind everything */
+      z-index: -1;
       pointer-events: none;
       width: 100vw;
       height: 100vh;
-      overflow: hidden;           /* NEW: clip canvas */
+      overflow: hidden;
     }
 
-    /* NEW: make sure Vanta canvas fills the layer */
     #vanta-page canvas {
       display: block;
       width: 100% !important;
@@ -56,11 +55,18 @@
 
     body {
       position: relative;
-      background: transparent !important;  /* CHANGED: force transparent so Vanta shows */
+      background: transparent !important;
     }
 
-    /* Everything above the vanta layer */
-    body > *:not(#vanta-page) {
+    /* FIXED: the old rule  body > *:not(#vanta-page) { position: relative; z-index: 1 }
+       had higher specificity than .site-header, so it silently turned the header
+       from sticky/z-index:100 into relative/z-index:1. <main> then painted OVER the
+       dropdown, which is why "Our range" looked transparent / hidden.
+       Now only the content blocks get lifted above Vanta, and the header, PWA banner,
+       notices and dialogs keep their own positioning. */
+    body > .topline,
+    body > main,
+    body > footer {
       position: relative;
       z-index: 1;
     }
@@ -194,6 +200,185 @@
       margin-top: 0;
     }
 
+    /* ============================================================
+       "OUR RANGE" DROPDOWN — custom, solid, self-contained.
+       Every selector starts with  .site-header #category-menu
+       so it out-ranks older rules in style.css / future.css and
+       cannot leak into any other component. JS is untouched:
+       it still toggles [hidden] and fills #category-links.
+       ============================================================ */
+    .site-header #category-menu {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 5%;
+      right: 5%;
+      z-index: 110;
+      box-sizing: border-box;
+      padding: 22px 26px 20px;
+      max-height: min(72vh, 580px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      color: #ffffff !important;
+      background:
+        radial-gradient(circle at 92% -10%, rgba(255, 122, 26, .28), transparent 42%),
+        linear-gradient(160deg, #0b2159 0%, #0f172a 100%) !important;
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: 22px;
+      opacity: 1 !important;
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+      box-shadow:
+        0 34px 80px rgba(6, 20, 60, .5),
+        0 2px 0 rgba(255, 255, 255, .06) inset;
+      animation: cw-range-in .22s ease-out;
+    }
+
+    /* keep [hidden] working even though we set layout on the element */
+    .site-header #category-menu[hidden] {
+      display: none !important;
+    }
+
+    @keyframes cw-range-in {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* little pointer notch under the "Our range" area */
+    .site-header #category-menu::before {
+      content: "";
+      position: absolute;
+      top: -8px;
+      left: 60px;
+      width: 16px;
+      height: 16px;
+      background: #0b2159;
+      border-left: 1px solid rgba(255, 255, 255, .14);
+      border-top: 1px solid rgba(255, 255, 255, .14);
+      transform: rotate(45deg);
+    }
+
+    .site-header #category-menu .menu-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 0 0 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, .12);
+    }
+
+    .site-header #category-menu .menu-heading .eyebrow {
+      margin: 0;
+      color: #ff9a4d !important;
+      letter-spacing: .14em;
+    }
+
+    .site-header #category-menu .menu-close {
+      display: grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, .3);
+      background: transparent;
+      color: #ffffff;
+      font-size: 1.3rem;
+      line-height: 1;
+      cursor: pointer;
+      transition: background .2s, border-color .2s, transform .2s;
+    }
+
+    .site-header #category-menu .menu-close:hover {
+      background: #ff7a1a;
+      border-color: #ff7a1a;
+      transform: rotate(90deg);
+    }
+
+    /* category tiles */
+    .site-header #category-menu #category-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+    }
+
+    .site-header #category-menu #category-links a,
+    .site-header #category-menu #category-links button {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      width: 100%;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 13px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, .12);
+      background: rgba(255, 255, 255, .07);
+      color: #ffffff !important;
+      font: inherit;
+      font-size: .92rem;
+      font-weight: 600;
+      text-align: left;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background .2s, border-color .2s, transform .2s;
+    }
+
+    .site-header #category-menu #category-links a *,
+    .site-header #category-menu #category-links button * {
+      color: inherit;
+    }
+
+    .site-header #category-menu #category-links a::after,
+    .site-header #category-menu #category-links button::after {
+      content: "↗";
+      opacity: .55;
+      transition: opacity .2s, transform .2s;
+    }
+
+    .site-header #category-menu #category-links a:hover,
+    .site-header #category-menu #category-links button:hover,
+    .site-header #category-menu #category-links a:focus-visible,
+    .site-header #category-menu #category-links button:focus-visible {
+      background: #ff7a1a;
+      border-color: #ff7a1a;
+      transform: translateX(3px);
+      outline: none;
+    }
+
+    .site-header #category-menu #category-links a:hover::after,
+    .site-header #category-menu #category-links button:hover::after {
+      opacity: 1;
+      transform: translate(2px, -2px);
+    }
+
+    .site-header #category-menu .text-link {
+      display: inline-block;
+      margin-top: 18px;
+      color: #ff9a4d !important;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color .2s, color .2s;
+    }
+
+    .site-header #category-menu .text-link:hover {
+      color: #ffffff !important;
+      border-bottom-color: #ff9a4d;
+    }
+
+    .site-header #category-menu .menu-close:focus-visible,
+    .site-header #category-menu .text-link:focus-visible {
+      outline: 3px solid #ff7a1a;
+      outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .site-header #category-menu { animation: none; }
+      .site-header #category-menu .menu-close:hover { transform: none; }
+    }
+
     /* ---------- Tablet ---------- */
     @media (max-width: 1100px) {
       .site-header { gap: 10px 12px; padding: 12px 4%; }
@@ -230,6 +415,18 @@
 
       .auth-user { max-width: 120px; }
       .site-header .category-menu { left: 5%; right: 5%; }
+
+      .site-header #category-menu {
+        left: 3%;
+        right: 3%;
+        padding: 18px 16px 16px;
+        border-radius: 18px;
+        max-height: 68vh;
+      }
+      .site-header #category-menu::before { left: 34px; }
+      .site-header #category-menu #category-links {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      }
     }
 
     /* ---------- Small mobile ---------- */
@@ -240,6 +437,15 @@
       .site-nav a, .site-nav button { font-size: 0.8rem; }
       .auth-link, .auth-user { font-size: 0.75rem; padding: 6px 10px; }
       .site-header > .quote-open.outline { font-size: 0.75rem; padding: 7px 10px; }
+
+      .site-header #category-menu #category-links {
+        grid-template-columns: 1fr 1fr;
+      }
+      .site-header #category-menu #category-links a,
+      .site-header #category-menu #category-links button {
+        padding: 12px 12px;
+        font-size: .85rem;
+      }
     }
 
     /* ---------- Very small ---------- */
@@ -248,6 +454,10 @@
       .auth-actions { order: 2; flex: 0 0 auto; margin-left: 0; }
       .site-header > .quote-open.outline { order: 3; flex: 0 0 auto; margin-left: auto; }
       .site-nav { order: 4; flex: 1 1 100%; }
+
+      .site-header #category-menu #category-links {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* ---------- PWA install banner ---------- */
@@ -317,7 +527,7 @@
       </button>
       <a href="{% url 'core:about' %}"
          {% if request.resolver_match.url_name == 'about' %}aria-current="page"{% endif %}>
-        About Comeiin
+        About
       </a>
       <a href="{% url 'core:laboratory' %}"
          {% if request.resolver_match.url_name == 'laboratory' %}aria-current="page"{% endif %}>
@@ -427,7 +637,7 @@
        ============================================================ -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
   <script src="{% static 'js/vanta.net.min.js' %}"></script>
-  <script src="{% static 'js/future.js' %}?v=15"></script>  <!-- CHANGED: v=14 → v=15 to bust cache -->
+  <script src="{% static 'js/future.js' %}?v=15"></script>
 
   <!-- ============================================================
        PWA — service worker + install prompt

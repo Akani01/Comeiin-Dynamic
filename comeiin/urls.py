@@ -17,7 +17,7 @@ urlpatterns = [
 
     # allauth — sign in, signup, Google OAuth
     path('accounts/', include('allauth.urls')),
-
+    path('', include('pwa.urls')),
     # Core — home, about, privacy, PWA manifest, PWA service worker
     path('', include('core.urls')),
 

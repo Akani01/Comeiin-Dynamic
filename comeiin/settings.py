@@ -25,7 +25,8 @@ SECRET_KEY = config(
     default='django-insecure-=f!6@&cm_%-)ay)n_d)p@)6c&@360bc6^@f67n1wavvxgs47$#'
 )
 
-DEBUG = config('DEBUG', default=True, cast=bool)
+# Default to False for production safety
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 
 # ============================================================
@@ -33,14 +34,13 @@ DEBUG = config('DEBUG', default=True, cast=bool)
 # ============================================================
 
 ALLOWED_HOSTS = [
-    'comeiinworks.co.za',
-    'www.comeiinworks.co.za',
     'comeiin.co.za',
     'www.comeiin.co.za',
+    'a3r7ck9i.up.railway.app',
+    '.railway.app',
     '127.0.0.1',
     'localhost',
     '0.0.0.0',
-    '.railway.app',
 ]
 
 
@@ -51,8 +51,6 @@ ALLOWED_HOSTS = [
 CSRF_TRUSTED_ORIGINS = [
     'https://comeiin.co.za',
     'https://www.comeiin.co.za',
-    'https://comeiinworks.co.za',
-    'https://www.comeiinworks.co.za',
     'https://*.railway.app',
     'http://127.0.0.1:8000',
     'http://localhost:8000',
@@ -64,8 +62,8 @@ CSRF_TRUSTED_ORIGINS = [
 # ============================================================
 
 CORS_ALLOWED_ORIGINS = [
-    'https://comeiinworks.co.za',
-    'https://www.comeiinworks.co.za',
+    'https://comeiin.co.za',
+    'https://www.comeiin.co.za',
     'http://127.0.0.1:8000',
     'http://localhost:8000',
 ]
@@ -73,6 +71,7 @@ CORS_ALLOWED_ORIGINS = [
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOW_CREDENTIALS = True
 USE_X_FORWARDED_HOST = True
+
 
 # ============================================================
 # SESSION SETTINGS
@@ -183,7 +182,6 @@ ACCOUNT_LOGIN_REDIRECT_URL = '/'
 ACCOUNT_SIGNUP_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 
-# Redirect paths — point allauth to our custom URLs
 ACCOUNT_LOGIN_URL = '/accounts/login/'
 ACCOUNT_LOGOUT_URL = '/accounts/logout/'
 ACCOUNT_SIGNUP_URL = '/accounts/signup/'
@@ -191,12 +189,11 @@ ACCOUNT_RESET_PASSWORD_URL = '/accounts/password/reset/'
 
 
 # ============================================================
-# ALLAUTH — ADAPTERS (customize the flow)
+# ALLAUTH — ADAPTERS
 # ============================================================
 
 ACCOUNT_ADAPTER = 'allauth.account.adapter.DefaultAccountAdapter'
 ACCOUNT_FORMS = {
-    # Use allauth's default forms — our templates just restyle them
     'login': 'allauth.account.forms.LoginForm',
     'signup': 'allauth.account.forms.SignupForm',
     'reset_password': 'allauth.account.forms.ResetPasswordForm',
@@ -211,9 +208,6 @@ SOCIALACCOUNT_AUTO_SIGNUP = True
 SOCIALACCOUNT_QUERY_EMAIL = True
 SOCIALACCOUNT_EMAIL_AUTHENTICATION = True
 SOCIALACCOUNT_EMAIL_AUTHENTICATION_AUTO_CONNECT = True
-SOCIALACCOUNT_LOGIN_ON_GET = True
-
-# Skip the "continue" page after Google returns — send straight to home
 SOCIALACCOUNT_LOGIN_ON_GET = True
 SOCIALACCOUNT_STORE_TOKENS = False
 
@@ -249,22 +243,85 @@ PWA_APP_DIR = 'ltr'
 PWA_APP_LANG = 'en-ZA'
 PWA_APP_ORIENTATION = 'portrait'
 
+# ---------- ICONS (any + maskable, mimics OppoGlobe) ----------
+
 PWA_APP_ICONS = [
-    {'src': '/static/assets/pwa/icon-72.png',   'sizes': '72x72',   'type': 'image/png'},
-    {'src': '/static/assets/pwa/icon-96.png',   'sizes': '96x96',   'type': 'image/png'},
-    {'src': '/static/assets/pwa/icon-128.png',  'sizes': '128x128', 'type': 'image/png'},
-    {'src': '/static/assets/pwa/icon-144.png',  'sizes': '144x144', 'type': 'image/png'},
-    {'src': '/static/assets/pwa/icon-152.png',  'sizes': '152x152', 'type': 'image/png'},
-    {'src': '/static/assets/pwa/icon-192.png',  'sizes': '192x192', 'type': 'image/png'},
-    {'src': '/static/assets/pwa/icon-384.png',  'sizes': '384x384', 'type': 'image/png'},
-    {'src': '/static/assets/pwa/icon-512.png',  'sizes': '512x512', 'type': 'image/png'},
+    {'src': '/static/assets/pwa/icon-72.png',            'sizes': '72x72',   'type': 'image/png', 'purpose': 'any'},
+    {'src': '/static/assets/pwa/icon-72-maskable.png',   'sizes': '72x72',   'type': 'image/png', 'purpose': 'maskable'},
+    {'src': '/static/assets/pwa/icon-96.png',            'sizes': '96x96',   'type': 'image/png', 'purpose': 'any'},
+    {'src': '/static/assets/pwa/icon-96-maskable.png',   'sizes': '96x96',   'type': 'image/png', 'purpose': 'maskable'},
+    {'src': '/static/assets/pwa/icon-128.png',           'sizes': '128x128', 'type': 'image/png', 'purpose': 'any'},
+    {'src': '/static/assets/pwa/icon-128-maskable.png',  'sizes': '128x128', 'type': 'image/png', 'purpose': 'maskable'},
+    {'src': '/static/assets/pwa/icon-144.png',           'sizes': '144x144', 'type': 'image/png', 'purpose': 'any'},
+    {'src': '/static/assets/pwa/icon-144-maskable.png',  'sizes': '144x144', 'type': 'image/png', 'purpose': 'maskable'},
+    {'src': '/static/assets/pwa/icon-152.png',           'sizes': '152x152', 'type': 'image/png', 'purpose': 'any'},
+    {'src': '/static/assets/pwa/icon-152-maskable.png',  'sizes': '152x152', 'type': 'image/png', 'purpose': 'maskable'},
+    {'src': '/static/assets/pwa/icon-192.png',           'sizes': '192x192', 'type': 'image/png', 'purpose': 'any'},
+    {'src': '/static/assets/pwa/icon-192-maskable.png',  'sizes': '192x192', 'type': 'image/png', 'purpose': 'maskable'},
+    {'src': '/static/assets/pwa/icon-384.png',           'sizes': '384x384', 'type': 'image/png', 'purpose': 'any'},
+    {'src': '/static/assets/pwa/icon-384-maskable.png',  'sizes': '384x384', 'type': 'image/png', 'purpose': 'maskable'},
+    {'src': '/static/assets/pwa/icon-512.png',           'sizes': '512x512', 'type': 'image/png', 'purpose': 'any'},
+    {'src': '/static/assets/pwa/icon-512-maskable.png',  'sizes': '512x512', 'type': 'image/png', 'purpose': 'maskable'},
 ]
+
+# ---------- SPLASH SCREEN ----------
 
 PWA_APP_SPLASH_SCREEN = [
     {
         'src': '/static/assets/pwa/icon-512.png',
         'sizes': '512x512',
         'type': 'image/png',
+    },
+]
+
+# ---------- SCREENSHOTS ----------
+
+PWA_APP_SCREENSHOTS = [
+    {
+        'src': '/static/assets/pwa/screenshot-desktop.png',
+        'sizes': '1280x720',
+        'type': 'image/png',
+        'platform': 'wide',
+        'label': 'Browse laboratory equipment on desktop',
+    },
+    {
+        'src': '/static/assets/pwa/screenshot-mobile.png',
+        'sizes': '750x1334',
+        'type': 'image/png',
+        'platform': 'narrow',
+        'label': 'Shop lab supplies on mobile',
+    },
+]
+
+# ---------- SHORTCUTS ----------
+
+PWA_APP_SHORTCUTS = [
+    {
+        'name': 'Products',
+        'short_name': 'Products',
+        'description': 'Browse laboratory products',
+        'url': '/?tab=products',
+        'icons': [
+            {'src': '/static/assets/pwa/shortcut-products.png', 'sizes': '96x96', 'type': 'image/png'}
+        ],
+    },
+    {
+        'name': 'Quotes',
+        'short_name': 'Quotes',
+        'description': 'Request a quote',
+        'url': '/?tab=quotes',
+        'icons': [
+            {'src': '/static/assets/pwa/shortcut-quotes.png', 'sizes': '96x96', 'type': 'image/png'}
+        ],
+    },
+    {
+        'name': 'Contact',
+        'short_name': 'Contact',
+        'description': 'Contact us',
+        'url': '/contact/',
+        'icons': [
+            {'src': '/static/assets/pwa/shortcut-contact.png', 'sizes': '96x96', 'type': 'image/png'}
+        ],
     },
 ]
 
@@ -329,16 +386,25 @@ WSGI_APPLICATION = 'comeiin.wsgi.application'
 
 
 # ============================================================
-# DATABASE
+# DATABASE — with safe fallback
 # ============================================================
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'),
-        conn_max_age=600,
-        conn_health_checks=True,
-        ssl_require=True,
-    )
-}
+
+if os.environ.get('DATABASE_URL'):
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=os.environ.get('DATABASE_URL'),
+            conn_max_age=600,
+            conn_health_checks=True,
+            ssl_require=True,
+        )
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # ============================================================
@@ -442,10 +508,17 @@ SERVER_EMAIL = DEFAULT_FROM_EMAIL
 
 
 # ============================================================
-# WHITENOISE — compress + cache static
+# STATICFILES STORAGE (Django 4.2+ modern format)
 # ============================================================
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STORAGES = {
+    'default': {
+        'BACKEND': 'django.core.files.storage.FileSystemStorage',
+    },
+    'staticfiles': {
+        'BACKEND': 'whitenoise.storage.CompressedManifestStaticFilesStorage',
+    },
+}
 
 
 # ============================================================

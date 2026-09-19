@@ -5,13 +5,18 @@
 {% block body_class %}about-page{% endblock %}
 
 {% block content %}
+
+<!-- ============ HERO ============ -->
 <section class="about-hero section">
   <div class="about-hero-copy">
     <p class="eyebrow">
       <span class="status-dot"></span> ABOUT COMEIIN WORKS
     </p>
     <h1>Your laboratory needs a supply partner who keeps up.</h1>
-    <p>We help laboratories source essential equipment, glassware and consumables through one clear, responsive quotation process.</p>
+    <p>
+      We help laboratories source essential equipment, glassware and consumables through one
+      clear, responsive quotation process.
+    </p>
     <div class="hero-actions">
       <button class="quote-open button orange">
         Request a quotation <span>↗</span>
@@ -22,28 +27,78 @@
     </div>
   </div>
   <figure>
-    <img src="{% static 'assets/landing-about-v2.webp' %}" alt="Professional laboratory glassware on a modern laboratory bench" width="1400" height="933" fetchpriority="high" decoding="async" />
-    <span class="about-image-stamp">ASTUTE<br />SWIFT<br /><b>PASSIONATE</b></span>
+    <img
+      src="{% static 'assets/landing-about-v2.webp' %}"
+      alt="Professional laboratory glassware on a modern laboratory bench"
+      width="1400"
+      height="933"
+      fetchpriority="high"
+      decoding="async"
+    />
+    <span class="about-image-stamp">
+      ASTUTE<br />
+      SWIFT<br />
+      <b>PASSIONATE</b>
+    </span>
   </figure>
 </section>
 
+<!-- ============ PRINCIPLES ============ -->
 <div class="about-principles" aria-label="Comeiin Works principles">
   <span><b>01</b> Understand the requirement</span>
   <span><b>02</b> Source with purpose</span>
   <span><b>03</b> Respond with clarity</span>
 </div>
 
+<!-- ============ STORY ============ -->
 <section class="about-story section">
   <div>
     <p class="eyebrow">OUR ROLE</p>
-    <h2>More focus on the work.<br /><em>Less time chasing supplies.</em></h2>
+    <h2>
+      More focus on the work.<br />
+      <em>Less time chasing supplies.</em>
+    </h2>
   </div>
   <div class="about-story-copy">
-    <p>Comeiin Works supports routine, clinical, educational and specialised laboratories with practical access to the products they need. We bring equipment and consumables into a single enquiry, then confirm specifications, availability and the right fit for the work.</p>
-    <p>Our approach is built around responsive communication. You share the requirement; we help turn it into a clear, tailored quotation.</p>
+    <p>
+      Comeiin Works supports routine, clinical, educational and specialised laboratories with
+      practical access to the products they need. We bring equipment and consumables into a
+      single enquiry, then confirm specifications, availability and the right fit for the work.
+    </p>
+    <p>
+      Our approach is built around responsive communication. You share the requirement; we
+      help turn it into a clear, tailored quotation.
+    </p>
   </div>
 </section>
 
+<!-- ============ B-BBEE ============ -->
+<section class="about-bbbee section" aria-labelledby="bbbee-title">
+  <div class="about-bbbee-badge">
+    <img
+      src="{% static 'assets/bbbee-level-1-comeiin.webp' %}"
+      alt="B-BBEE Contributor Level 1 rating badge"
+      width="1000"
+      height="1000"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+  <div class="about-bbbee-copy">
+    <p class="eyebrow">RESPONSIBLE PROCUREMENT</p>
+    <h2 id="bbbee-title">A Level 1 contributor.</h2>
+    <p>
+      Comeiin Works holds a B-BBEE Level 1 contributor rating, supporting organisations that
+      consider supplier diversity and transformation in their procurement decisions.
+    </p>
+    <div class="about-bbbee-status">
+      <span>STATUS</span>
+      <strong>B-BBEE Level 1</strong>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VALUES ============ -->
 <section class="about-values section">
   <div class="section-title">
     <div>
@@ -56,46 +111,81 @@
     <article>
       <span>01</span>
       <h3>Astute.</h3>
-      <p>We pay attention to specifications and ask the practical questions that help identify the right supply option.</p>
+      <p>
+        We pay attention to specifications and ask the practical questions that help identify
+        the right supply option.
+      </p>
     </article>
     <article>
       <span>02</span>
       <h3>Swift.</h3>
-      <p>We keep enquiries moving with responsive communication and a straightforward request-for-quotation process.</p>
+      <p>
+        We keep enquiries moving with responsive communication and a straightforward
+        request-for-quotation process.
+      </p>
     </article>
     <article>
       <span>03</span>
       <h3>Passionate.</h3>
-      <p>We care about helping laboratories stay equipped for the work that matters to them.</p>
+      <p>
+        We care about helping laboratories stay equipped for the work that matters to them.
+      </p>
     </article>
   </div>
 </section>
 
+<!-- ============ PROCESS ============ -->
 <section class="about-process section">
   <div class="about-process-visual">
-    <img src="{% static 'assets/landing-hero-v2.webp' %}" alt="Laboratory glassware illuminated in Comeiin blue and orange" width="1600" height="900" loading="lazy" decoding="async" />
+    <img
+      src="{% static 'assets/landing-hero-v2.webp' %}"
+      alt="Laboratory glassware illuminated in Comeiin blue and orange"
+      width="1600"
+      height="900"
+      loading="lazy"
+      decoding="async"
+    />
   </div>
   <div>
     <p class="eyebrow">ONE CLEAR ROUTE</p>
     <h2>From requirement to quotation.</h2>
     <ol>
-      <li><i>01</i><b>Browse or describe</b><span>Select products from the catalogue or tell us what your laboratory requires.</span></li>
-      <li><i>02</i><b>Build one enquiry</b><span>Combine equipment, consumables and quantities in a single request.</span></li>
-      <li><i>03</i><b>Receive a tailored response</b><span>We confirm specifications, availability and pricing for your review.</span></li>
+      <li>
+        <i>01</i>
+        <b>Browse or describe</b>
+        <span>
+          Select products from the catalogue or tell us what your laboratory requires.
+        </span>
+      </li>
+      <li>
+        <i>02</i>
+        <b>Build one enquiry</b>
+        <span>Combine equipment, consumables and quantities in a single request.</span>
+      </li>
+      <li>
+        <i>03</i>
+        <b>Receive a tailored response</b>
+        <span>We confirm specifications, availability and pricing for your review.</span>
+      </li>
     </ol>
   </div>
 </section>
 
+<!-- ============ CTA ============ -->
 <section class="about-cta section">
   <div>
     <p class="eyebrow">READY WHEN YOU ARE</p>
     <h2>Tell us what your laboratory needs.</h2>
   </div>
   <div>
-    <p>Start with a single item or a complete requirements list. Our team will help shape the next step.</p>
+    <p>
+      Start with a single item or a complete requirements list. Our team will help shape the
+      next step.
+    </p>
     <button class="quote-open button orange">
       Request a quotation <span>↗</span>
     </button>
   </div>
 </section>
+
 {% endblock %}

@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% include 'includes/fire_wallpaper.html' %}
 {% block title %}Contact Us | Comeiin Works{% endblock %}
 
 {% block body_class %}lab-page{% endblock %}
 
 {% block extra_head %}
+
 <style>
   /* ============================================================
      Laboratory contact page — uses brand tokens from future.css
@@ -139,7 +140,7 @@
     grid-template-columns: 0.75fr 1.25fr;
     gap: clamp(26px, 4vw, 60px);
     align-items: start;
-    padding: 80px 5% 100px;
+    padding: 80px 5% 50px;
     background: #ffffffa6;
   }
   .lab-aside {
@@ -328,6 +329,101 @@
     color: #a3341c;
   }
 
+  /* ------------------------------------------------------------
+     Location / GPS map
+     ------------------------------------------------------------ */
+  .lab-map-section {
+    padding: 0 5% 100px;
+    background: #ffffffa6;
+  }
+  .lab-map {
+    position: relative;
+    box-sizing: border-box;
+    padding: clamp(22px, 3.5vw, 40px);
+    border: 1px solid #ffffffd9;
+    border-radius: 30px;
+    background: #ffffffe6;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 30px 80px #0b346a18;
+    overflow: hidden;
+  }
+  .lab-map:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--blue), #6f9ae0);
+  }
+  .lab-map__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px 24px;
+    flex-wrap: wrap;
+    margin-bottom: 22px;
+  }
+  .lab-map__head small {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--blue);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.7px;
+  }
+  .lab-map__head h2 {
+    margin: 0 0 6px;
+    color: var(--ink);
+    font: 650 clamp(24px, 2.8vw, 34px) / 1.15 Manrope, sans-serif;
+    letter-spacing: -1px;
+  }
+  .lab-map__head p {
+    margin: 0;
+    color: #5b6d83;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .lab-map__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 22px;
+    border-radius: 30px;
+    background: var(--blue);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    box-shadow: 0 12px 26px #093f9630;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  }
+  .lab-map__btn:hover,
+  .lab-map__btn:focus-visible {
+    transform: translateY(-2px);
+    background: #082960;
+    box-shadow: 0 16px 32px #093f9640;
+    outline: none;
+  }
+  .lab-map__frame {
+    position: relative;
+    aspect-ratio: 21 / 9;
+    min-height: 280px;
+    overflow: hidden;
+    border: 1px solid #cbd9ea;
+    border-radius: 20px;
+    background: #edf3fc;
+  }
+  .lab-map__frame iframe {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
   @media (max-width: 900px) {
     .lab-hero {
       grid-template-columns: 1fr;
@@ -340,12 +436,14 @@
     }
     .lab-main {
       grid-template-columns: 1fr;
-      padding: 55px 5% 80px;
+      padding: 55px 5% 40px;
     }
     .lab-aside {
       position: static;
       grid-template-columns: 1fr 1fr;
     }
+    .lab-map-section { padding-bottom: 80px; }
+    .lab-map__frame { aspect-ratio: 16 / 9; }
   }
   @media (max-width: 600px) {
     .lab-hero h1 {
@@ -366,6 +464,13 @@
       width: 100%;
       justify-content: space-between;
     }
+    .lab-map { border-radius: 24px; }
+    .lab-map__btn {
+      width: 100%;
+      justify-content: space-between;
+      box-sizing: border-box;
+    }
+    .lab-map__frame { aspect-ratio: 4 / 3; min-height: 240px; }
   }
 </style>
 {% endblock %}
@@ -471,6 +576,33 @@
 
       <div id="contact-message" class="form-message" role="status" aria-live="polite"></div>
     </form>
+  </div>
+</section>
+
+<!-- ============================================================
+     LOCATION — new address + GPS map
+     ============================================================ -->
+<section class="lab-map-section" aria-labelledby="lab-map-title">
+  <div class="lab-map">
+    <div class="lab-map__head">
+      <div>
+        <small>VISIT US</small>
+        <h2 id="lab-map-title">Innovation Worx – 16th Road</h2>
+        <p>Find us on the map or open it in Google Maps for directions.</p>
+      </div>
+      <a class="lab-map__btn"
+         href="https://www.google.com/maps/search/?api=1&amp;query=Innovation+Worx+16th+Road"
+         target="_blank" rel="noopener">
+        <span>Get directions</span><span aria-hidden="true">↗</span>
+      </a>
+    </div>
+
+    <div class="lab-map__frame">
+      <iframe
+        title="Comeiin Works location on Google Maps"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3586.3670560262412!2d28.12523230756721!3d-25.988790850252528!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e956fd73c6622b5%3A0xb65c8c1164b1f8df!2sInnovation%20Worx%20-%2016th%20Road!5e0!3m2!1sen!2sza!4v1789869440690!5m2!1sen!2sza"
+        allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
   </div>
 </section>
 

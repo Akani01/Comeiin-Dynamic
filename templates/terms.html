@@ -1,30 +1,682 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Privacy Policy | Comeiin Works{% endblock %}
+{% block title %}Terms &amp; Conditions | Comeiin Works{% endblock %}
+
+{% block meta_description %}Terms and conditions for using the Comeiin Works website and for the supply of laboratory equipment, consumables and laboratory services.{% endblock %}
+
+{% block body_class %}terms-page{% endblock %}
+
+{% block extra_head %}
+<style>
+  /* ============================================================
+     Terms & Conditions — uses brand tokens from future.css
+     ============================================================ */
+  .terms-hero {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: clamp(28px, 5vw, 80px);
+    align-items: center;
+    padding: 80px 5% 60px;
+    background: #edf3fcbf;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .terms-hero:before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: radial-gradient(#174b8f20 1px, transparent 1px);
+    background-size: 24px 24px;
+    mask-image: linear-gradient(90deg, black, transparent 70%);
+  }
+  .terms-hero .eyebrow {
+    color: var(--blue, #093f96);
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin: 0 0 18px;
+  }
+  .terms-hero h1 {
+    margin: 0 0 20px;
+    color: var(--ink, #0f172a);
+    font: 700 clamp(40px, 5.4vw, 76px) / 1.04 Manrope, sans-serif;
+    letter-spacing: -3px;
+  }
+  .terms-hero h1 em {
+    font-style: normal;
+    color: var(--blue, #093f96);
+  }
+  .terms-hero p.lead {
+    max-width: 560px;
+    margin: 0 0 26px;
+    color: #50647e;
+    font-size: 18px;
+    line-height: 1.75;
+  }
+  .terms-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .terms-meta li {
+    padding: 9px 15px;
+    border: 1px solid #cbd9ed;
+    border-radius: 30px;
+    background: #ffffffcf;
+    color: var(--blue, #093f96);
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .terms-figure {
+    position: relative;
+    margin: 0;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border: 1px solid #ffffffd9;
+    border-radius: 28px;
+    background: #dfeafa;
+    box-shadow: 0 30px 80px #0a3f9028;
+  }
+  .terms-figure img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* ---------- layout: contents + sections ---------- */
+  .terms-body {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    gap: clamp(24px, 4vw, 56px);
+    align-items: start;
+    padding: 70px 5% 100px;
+    background: #ffffffa6;
+  }
+
+  .terms-toc {
+    position: sticky;
+    top: 130px;
+    max-height: calc(100vh - 160px);
+    overflow-y: auto;
+    padding: 22px;
+    border: 1px solid #ffffffcf;
+    border-radius: 24px;
+    background: #ffffffcc;
+    box-shadow: 0 20px 55px #143b7112;
+  }
+  .terms-toc h2 {
+    margin: 0 0 12px;
+    color: var(--blue, #093f96);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.7px;
+    text-transform: uppercase;
+  }
+  .terms-toc ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .terms-toc a {
+    display: block;
+    padding: 7px 10px;
+    border-radius: 10px;
+    color: #345070;
+    font-size: 13px;
+    line-height: 1.4;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .terms-toc a:hover,
+  .terms-toc a:focus-visible {
+    background: #edf3fc;
+    color: var(--blue, #093f96);
+    outline: none;
+  }
+
+  .terms-content {
+    display: grid;
+    gap: 18px;
+    min-width: 0;
+  }
+
+  .terms-summary {
+    padding: clamp(22px, 3vw, 34px);
+    border-radius: 24px;
+    background: linear-gradient(140deg, #0c439a, #082960);
+    color: #fff;
+    box-shadow: 0 24px 60px #0b346a30;
+  }
+  .terms-summary h2 {
+    margin: 0 0 12px;
+    color: #fff;
+    font: 650 clamp(20px, 2.2vw, 26px) / 1.2 Manrope, sans-serif;
+    letter-spacing: -0.5px;
+  }
+  .terms-summary p { margin: 0 0 10px; color: #c9daf3; font-size: 15px; line-height: 1.7; }
+  .terms-summary ul { margin: 10px 0 0; padding-left: 20px; color: #e4edfb; font-size: 15px; line-height: 1.7; }
+  .terms-summary li { margin-bottom: 6px; }
+
+  .terms-section {
+    padding: clamp(22px, 3vw, 34px);
+    border: 1px solid #ffffffd9;
+    border-radius: 24px;
+    background: #ffffffe6;
+    box-shadow: 0 20px 55px #0b346a12;
+  }
+  .terms-section h2 {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 0 0 14px;
+    color: var(--ink, #0f172a);
+    font: 650 clamp(20px, 2.2vw, 26px) / 1.25 Manrope, sans-serif;
+    letter-spacing: -0.5px;
+  }
+  .terms-section h2 span {
+    display: grid;
+    place-items: center;
+    flex: 0 0 38px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--blue, #093f96);
+    color: #fff;
+    font: 700 13px/1 Manrope, sans-serif;
+    letter-spacing: 0;
+  }
+  .terms-section p {
+    margin: 0 0 12px;
+    color: #4a5d76;
+    font-size: 15px;
+    line-height: 1.75;
+  }
+  .terms-section p:last-child { margin-bottom: 0; }
+  .terms-section ul {
+    margin: 4px 0 12px;
+    padding-left: 22px;
+    color: #4a5d76;
+    font-size: 15px;
+    line-height: 1.75;
+  }
+  .terms-section ul:last-child { margin-bottom: 0; }
+  .terms-section li { margin-bottom: 6px; }
+  .terms-section strong { color: var(--ink, #0f172a); }
+  .terms-section a {
+    color: var(--blue, #093f96);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .terms-contact {
+    padding: clamp(22px, 3vw, 34px);
+    border-radius: 24px;
+    background: linear-gradient(140deg, #0c439a, #082960);
+    color: #fff;
+    box-shadow: 0 24px 60px #0b346a30;
+  }
+  .terms-contact h2 {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 0 0 14px;
+    color: #fff;
+    font: 650 clamp(20px, 2.2vw, 26px) / 1.25 Manrope, sans-serif;
+    letter-spacing: -0.5px;
+  }
+  .terms-contact h2 span {
+    display: grid;
+    place-items: center;
+    flex: 0 0 38px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, .18);
+    font: 700 13px/1 Manrope, sans-serif;
+    letter-spacing: 0;
+  }
+  .terms-contact p { margin: 0 0 14px; color: #c9daf3; font-size: 15px; line-height: 1.7; }
+  .terms-contact ul { margin: 0 0 18px; padding: 0; list-style: none; display: grid; gap: 8px; }
+  .terms-contact li { color: #e4edfb; font-size: 15px; line-height: 1.6; overflow-wrap: anywhere; }
+  .terms-contact li b { display: inline-block; min-width: 96px; color: #9db8ff; font-weight: 600; }
+  .terms-contact a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+
+  .terms-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 0;
+  }
+  .terms-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 20px;
+    border: 1px solid rgba(255, 255, 255, .4);
+    border-radius: 30px;
+    background: transparent;
+    color: #fff !important;
+    font: 600 14px/1 inherit;
+    text-decoration: none !important;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .terms-btn:hover,
+  .terms-btn:focus-visible {
+    background: rgba(255, 255, 255, .16);
+    border-color: #fff;
+    outline: none;
+  }
+
+  @media (max-width: 900px) {
+    .terms-hero {
+      grid-template-columns: 1fr;
+      padding-top: 55px;
+    }
+    .terms-figure { order: -1; aspect-ratio: 16 / 9; }
+    .terms-body {
+      grid-template-columns: 1fr;
+      padding: 50px 5% 80px;
+    }
+    .terms-toc {
+      position: static;
+      max-height: none;
+    }
+    .terms-toc ol { columns: 2; column-gap: 18px; }
+    .terms-toc li { break-inside: avoid; }
+  }
+  @media (max-width: 560px) {
+    .terms-hero h1 { font-size: 40px; letter-spacing: -2px; }
+    .terms-hero p.lead { font-size: 15px; }
+    .terms-figure { border-radius: 22px; aspect-ratio: 4 / 3; }
+    .terms-toc ol { columns: 1; }
+    .terms-section, .terms-summary, .terms-contact { border-radius: 20px; }
+    .terms-section h2 span, .terms-contact h2 span { flex-basis: 34px; width: 34px; height: 34px; }
+  }
+
+  @media print {
+    .terms-toc, .terms-figure, .terms-actions, .terms-hero:before { display: none !important; }
+    .terms-hero, .terms-body { display: block; padding: 20px 0; background: #fff; }
+    .terms-section, .terms-summary, .terms-contact {
+      break-inside: avoid;
+      box-shadow: none;
+      border: 1px solid #ccc;
+      background: #fff;
+      color: #000;
+    }
+    .terms-summary h2, .terms-summary p, .terms-summary ul,
+    .terms-contact h2, .terms-contact p, .terms-contact li, .terms-contact a { color: #000; }
+  }
+</style>
+{% endblock %}
 
 {% block content %}
-<section class="page-header">
-    <h1>Privacy Policy</h1>
-    <p>How Comeiin Works collects, uses and protects your information.</p>
+
+<section class="terms-hero">
+  <div>
+    <p class="eyebrow">LEGAL</p>
+    <h1>Terms &amp; <em>Conditions</em></h1>
+    <p class="lead">
+      The terms that apply when you use the Comeiin Works website, request a quotation,
+      buy laboratory equipment and consumables, or use our laboratory and engineering services.
+    </p>
+    <ul class="terms-meta" aria-label="About this document">
+      <li>Last updated: 20 September 2026</li>
+      <li>Applies to: website, quotations, supply &amp; services</li>
+      <li>Governing law: South Africa</li>
+    </ul>
+  </div>
+
+  <figure class="terms-figure">
+    <img src="{% static 'images/card2.jpeg' %}"
+         alt="Comeiin Works laboratory"
+         width="1600" height="900" decoding="async" fetchpriority="high" />
+  </figure>
 </section>
 
-<section class="form-section">
-    <div class="container">
-        <div class="form-card" style="max-width:900px;">
-            <h2 style="color:var(--cw-navy);">1. Introduction</h2>
-            <p>Comeiin Works (Pty) Ltd respects your privacy. This policy explains what personal information we collect
-                and how we use it when you use our website or submit enquiries.</p>
+<section class="terms-body">
 
-            <h2 style="color:var(--cw-navy); margin-top:22px;">2. Information We Collect</h2>
-            <p>We collect information you provide via contact and quote forms, including name, email, phone, company
-                and message details.</p>
+  <!-- ========================= TABLE OF CONTENTS ========================= -->
+  <nav class="terms-toc" aria-label="Terms and conditions contents">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#acceptance">1. Acceptance of these Terms</a></li>
+      <li><a href="#definitions">2. Definitions</a></li>
+      <li><a href="#about">3. About Comeiin Works</a></li>
+      <li><a href="#website-use">4. Use of the website</a></li>
+      <li><a href="#accounts">5. Accounts and sign-in</a></li>
+      <li><a href="#product-info">6. Product information</a></li>
+      <li><a href="#quotations">7. Quotations and enquiries</a></li>
+      <li><a href="#pricing">8. Pricing and VAT</a></li>
+      <li><a href="#orders">9. Orders and acceptance</a></li>
+      <li><a href="#payment">10. Payment</a></li>
+      <li><a href="#delivery">11. Delivery and risk</a></li>
+      <li><a href="#returns">12. Inspection, returns and cancellation</a></li>
+      <li><a href="#warranties">13. Warranties and suitability</a></li>
+      <li><a href="#services">14. Laboratory and engineering services</a></li>
+      <li><a href="#safety">15. Health, safety and hazardous materials</a></li>
+      <li><a href="#ip">16. Intellectual property</a></li>
+      <li><a href="#privacy">17. Privacy and personal information</a></li>
+      <li><a href="#electronic">18. Electronic communications</a></li>
+      <li><a href="#third-party">19. Third-party services and links</a></li>
+      <li><a href="#liability">20. Limitation of liability</a></li>
+      <li><a href="#indemnity">21. Indemnity</a></li>
+      <li><a href="#confidentiality">22. Confidentiality</a></li>
+      <li><a href="#force-majeure">23. Events beyond our control</a></li>
+      <li><a href="#ethics">24. Ethics, compliance and B-BBEE</a></li>
+      <li><a href="#changes">25. Changes to these Terms</a></li>
+      <li><a href="#general">26. General provisions</a></li>
+      <li><a href="#law">27. Governing law and disputes</a></li>
+      <li><a href="#contact-us">28. Contact us</a></li>
+    </ol>
+  </nav>
 
-            <h2 style="color:var(--cw-navy); margin-top:22px;">3. How We Use Information</h2>
-            <p>We use your information to respond to enquiries, prepare quotations and provide our services.</p>
+  <!-- ============================== CONTENT ============================== -->
+  <div class="terms-content">
 
-            <h2 style="color:var(--cw-navy); margin-top:22px;">4. Contact</h2>
-            <p>For privacy-related questions, email <a href="mailto:info@comeiinworks.co.za">info@comeiinworks.co.za</a>.</p>
-        </div>
+    <div class="terms-summary">
+      <h2>The short version</h2>
+      <p>This summary is for convenience only. The full Terms below apply.</p>
+      <ul>
+        <li>Building a quote list or sending an enquiry does not create an order. An order exists only once you accept our quotation and we confirm it.</li>
+        <li>Product details, images and availability are provided in good faith and are confirmed in your quotation.</li>
+        <li>Prices, VAT, delivery and payment terms are set out in your quotation and invoice.</li>
+        <li>Laboratory equipment and consumables must be used by trained people, following the manufacturer’s instructions and safety requirements.</li>
+        <li>Nothing in these Terms takes away rights you have under South African law, including the Consumer Protection Act where it applies.</li>
+      </ul>
     </div>
+
+    <section class="terms-section" id="acceptance">
+      <h2><span>1</span>Acceptance of these Terms</h2>
+      <p>These Terms and Conditions (“<strong>Terms</strong>”) govern your access to and use of the Comeiin Works website, and every enquiry, quotation, order, supply of goods and provision of services between you and Comeiin Works (Pty) Ltd (“<strong>Comeiin Works</strong>”, “<strong>we</strong>”, “<strong>us</strong>” or “<strong>our</strong>”).</p>
+      <p>By using the website, building a quote list, submitting an enquiry, requesting a quotation, or placing an order, you confirm that you have read, understood and agree to be bound by these Terms. If you are acting on behalf of a company, institution or other organisation, you confirm that you are authorised to bind it to these Terms.</p>
+      <p>If you do not agree with any part of these Terms, please do not use the website or our services.</p>
+    </section>
+
+    <section class="terms-section" id="definitions">
+      <h2><span>2</span>Definitions</h2>
+      <ul>
+        <li><strong>Agreement</strong> means these Terms together with an accepted Quotation, Order, invoice and any written specification or scope of work that forms part of the transaction.</li>
+        <li><strong>Client</strong> or <strong>you</strong> means the person, company or institution that visits the website, requests a Quotation, places an Order or receives goods or Services.</li>
+        <li><strong>Goods</strong> means laboratory equipment, glassware, consumables, liquid handling products and related items supplied or offered by us.</li>
+        <li><strong>Services</strong> means laboratory support services such as glassware preparation, sample handling, quality control and specialised support, and engineering services, as described in a Quotation or written scope.</li>
+        <li><strong>Quotation</strong> means a written price and specification proposal issued by us in response to an enquiry or request for quotation (RFQ).</li>
+        <li><strong>Order</strong> means your written acceptance of a Quotation, or a purchase order, that we have confirmed in writing.</li>
+        <li><strong>Website</strong> means comeiinworks.co.za and its related pages, forms, catalogue and web application.</li>
+        <li><strong>Business Day</strong> means any day other than a Saturday, Sunday or public holiday in South Africa.</li>
+      </ul>
+    </section>
+
+    <section class="terms-section" id="about">
+      <h2><span>3</span>About Comeiin Works</h2>
+      <!-- TODO: add company registration number and VAT number below -->
+      <p>Comeiin Works (Pty) Ltd is a South African supplier of laboratory equipment, glassware and consumables, and provider of laboratory support and engineering services to routine, clinical, educational and specialised laboratories.</p>
+      <p>Our address is Innovation Worx – 16th Road. You can reach us on 011 238 7334 or at <a href="mailto:Admin@comeiin.co.za">Admin@comeiin.co.za</a>.</p>
+    </section>
+
+    <section class="terms-section" id="website-use">
+      <h2><span>4</span>Use of the website</h2>
+      <p>You may use the website only for lawful purposes and in line with these Terms. You agree that you will not:</p>
+      <ul>
+        <li>submit false, misleading or fraudulent enquiries, quote requests or account details;</li>
+        <li>attempt to gain unauthorised access to the website, our systems, other users’ accounts or data;</li>
+        <li>introduce viruses, malicious code or anything else designed to disrupt or damage the website;</li>
+        <li>use automated tools such as bots or scrapers to copy, harvest or overload the website or catalogue;</li>
+        <li>use the website in a way that infringes anyone’s rights or breaches any law; or</li>
+        <li>attempt to reverse-engineer, copy or resell any part of the website.</li>
+      </ul>
+      <p>We work to keep the website available and accurate, but we do not guarantee uninterrupted or error-free access. We may suspend, restrict or change the website, or block access for anyone who breaches these Terms, at any time and without notice.</p>
+    </section>
+
+    <section class="terms-section" id="accounts">
+      <h2><span>5</span>Accounts and sign-in</h2>
+      <ul>
+        <li>Some features may require you to create an account or sign in. You must give accurate, current and complete information and keep it up to date.</li>
+        <li>You are responsible for keeping your login details confidential and for all activity under your account.</li>
+        <li>Tell us immediately at <a href="mailto:Admin@comeiin.co.za">Admin@comeiin.co.za</a> if you suspect unauthorised use of your account.</li>
+        <li>We may suspend or close an account that we reasonably believe is being misused, is inaccurate, or has breached these Terms.</li>
+      </ul>
+    </section>
+
+    <section class="terms-section" id="product-info">
+      <h2><span>6</span>Product information</h2>
+      <ul>
+        <li>Product descriptions, specifications, sizes, part numbers and images on the website are provided as a guide. Images may be illustrative and the product supplied may differ in appearance, packaging or minor details.</li>
+        <li>Manufacturers may change specifications, materials or packaging without notice. We will confirm the specification applicable to your order in the Quotation.</li>
+        <li>The catalogue is an invitation to enquire and is not an offer to sell. Availability, lead times and pricing are confirmed only in a Quotation.</li>
+        <li>Products listed on the website may be discontinued, out of stock or available on special order.</li>
+        <li>You are responsible for checking that the Goods you choose meet your technical, regulatory and quality requirements before you place an Order.</li>
+      </ul>
+    </section>
+
+    <section class="terms-section" id="quotations">
+      <h2><span>7</span>Quotations and enquiries</h2>
+      <p>The “Your quote” list and any enquiry or request for quotation you send us is a request for information and pricing only. It does not create a contract, and it does not oblige either of us to buy or sell.</p>
+      <ul>
+        <li>We will review your requirements and confirm specifications, availability and pricing in a Quotation.</li>
+        <li>A Quotation is valid for the period stated on it. Where no period is stated, it is valid for a reasonable period, and pricing remains subject to stock, supplier pricing and exchange-rate movements until you accept it and we confirm your Order.</li>
+        <li>If your quantities, specifications or delivery requirements change, we may issue a revised Quotation.</li>
+        <li>Items that we import or source on special order may be subject to longer lead times and to price adjustments arising from supplier price changes, exchange rates, freight or duties before your Order is confirmed.</li>
+        <li>A Quotation is confidential to you and may not be shared with competitors or used to obtain other pricing in a way that misuses our information.</li>
+      </ul>
+    </section>
+
+    <section class="terms-section" id="pricing">
+      <h2><span>8</span>Pricing and VAT</h2>
+      <ul>
+        <li>Prices are quoted in South African Rand (ZAR) unless stated otherwise.</li>
+        <li>Value-Added Tax (VAT) at the applicable rate is added to prices unless the Quotation states that prices include VAT.</li>
+        <li>Unless the Quotation says otherwise, prices exclude delivery, freight, insurance, packaging, installation, commissioning, training, calibration, certification and import duties.</li>
+        <li>We may correct obvious pricing or typographical errors, including on the website, before an Order is confirmed.</li>
+        <li>Pricing for Services is set out in the Quotation or scope of work and may depend on the number and type of items, samples or tests involved.</li>
+      </ul>
+    </section>
+
+    <section class="terms-section" id="orders">
+      <h2><span>9</span>Orders and acceptance</h2>
+      <ul>
+        <li>An Order is placed when you accept a Quotation in writing (for example by email or signed Quotation) or send us a purchase order that matches it. An Order is binding on us only once we confirm it in writing.</li>
+        <li>We may decline or limit any Order, for example because of stock, supplier availability, credit approval, errors or a legal restriction.</li>
+        <li>Changes to a confirmed Order, including quantity, specification or delivery details, are effective only if we agree in writing and may change the price and delivery time.</li>
+        <li>Special-order, imported, made-to-order or customised Goods and Services already started cannot be cancelled once ordered, except where we agree in writing.</li>
+        <li>Please check your Order confirmation carefully and tell us about any error within one Business Day of receiving it.</li>
+      </ul>
+    </section>
+
+    <section class="terms-section" id="payment">
+      <h2><span>10</span>Payment</h2>
+      <ul>
+        <li>Payment is due as stated in the Quotation or invoice. New clients, special-order Goods and larger Orders may require a deposit or payment in full before we order or deliver.</li>
+        <li>Credit facilities, where offered, are subject to credit approval and to the payment terms agreed in writing. We may withdraw or suspend credit if payment is late or your credit standing changes.</li>
+        <li>Payment must be made in cleared funds using the banking details on our invoice. Please confirm banking details with us by phone before making a first payment or if you receive a change-of-banking-details request, to guard against fraud.</li>
+        <li>Overdue amounts may attract interest at the rate stated on the invoice or otherwise at a rate permitted by law, and you will be responsible for reasonable collection costs where the law allows.</li>
+        <li>You may not withhold or set off payment against amounts owed to us unless we agree in writing. If you dispute an invoice, tell us in writing with reasons within seven days of receiving it and pay the undisputed portion.</li>
+        <li>Ownership of Goods remains with Comeiin Works until we have received payment in full, even after delivery.</li>
+      </ul>
+    </section>
+
+    <section class="terms-section" id="delivery">
+      <h2><span>11</span>Delivery and risk</h2>
+      <ul>
+        <li>Delivery and lead times are estimates. We will use reasonable efforts to meet them but they are not guaranteed, and a delay does not entitle you to cancel unless we agree in writing.</li>
+        <li>We deliver within South Africa unless we agree otherwise in writing. Goods may also be collected from us by arrangement.</li>
+        <li>We may deliver Orders in instalments and invoice each instalment separately.</li>
+        <li>Risk in the Goods passes to you on delivery to the address you gave us, or when the Goods are collected by you or your carrier.</li>
+        <li>Fragile, glass, temperature-sensitive or otherwise sensitive Goods must be received, checked and stored correctly. Please tell us in advance about special delivery, storage or receiving requirements, and make sure someone authorised is available to receive the delivery.</li>
+        <li>Where you arrange your own courier or an export shipment, you are responsible for freight, insurance, customs clearance, duties and compliance with import and export laws.</li>
+      </ul>
+    </section>
+
+    <section class="terms-section" id="returns">
+      <h2><span>12</span>Inspection, returns and cancellation</h2>
+      <ul>
+        <li><strong>Inspect on receipt.</strong> Check Goods when they arrive. Report visible damage, shortages or incorrect items to us in writing as soon as possible and within three Business Days of delivery, and note them on the delivery note. Photographs help.</li>
+        <li><strong>Returns need approval.</strong> Do not return Goods without our written authorisation. Approved returns must be unused, in original, undamaged packaging with sterile, sealed and tamper-evident packaging intact, and must include the invoice or delivery note reference.</li>
+        <li><strong>What we generally cannot take back.</strong> Special-order, imported, cut-to-size or customised Goods; opened, used, contaminated or sterile consumables where the seal has been broken; temperature-sensitive or perishable Goods; and Goods damaged after delivery, unless they are defective or not as ordered.</li>
+        <li><strong>Costs.</strong> A restocking fee and return freight may apply to returns that are not due to our error or a defect.</li>
+        <li><strong>Defective or incorrect Goods.</strong> Where Goods are defective, damaged on delivery or not what you ordered, we will repair, replace or credit them, or deal with the matter as the law and the manufacturer’s warranty require.</li>
+        <li><strong>Your legal rights.</strong> Nothing in this section limits any right you may have under the Consumer Protection Act 68 of 2008 or other South African law where it applies to your transaction.</li>
+      </ul>
+    </section>
+
+    <section class="terms-section" id="warranties">
+      <h2><span>13</span>Warranties and suitability</h2>
+      <ul>
+        <li><strong>Manufacturer warranties.</strong> Equipment and other Goods are normally covered by the manufacturer’s warranty. The warranty period, scope and claims process are those of the manufacturer, and we will help you lodge a claim where we can.</li>
+        <li><strong>What warranties do not cover.</strong> Unless the manufacturer’s warranty or the law says otherwise, warranties do not cover misuse, incorrect installation, use with incompatible consumables, lack of maintenance or calibration, fair wear and tear, breakage of glassware in use, damage by unauthorised repairs or modifications, or events such as power surges.</li>
+        <li><strong>Consumables.</strong> Consumables are supplied to the specification stated for the product and batch at the time of delivery. You must store and use them as directed and within their expiry date.</li>
+        <li><strong>Suitability.</strong> Any technical guidance we give is offered in good faith to help you choose. You remain responsible for deciding whether Goods are suitable for your methods, samples, regulatory requirements and intended use.</li>
+        <li>Except for warranties that cannot be excluded by law, we give no other express or implied warranties.</li>
+      </ul>
+    </section>
+
+    <section class="terms-section" id="services">
+      <h2><span>14</span>Laboratory and engineering services</h2>
+      <p>This section applies when we provide Services such as glassware preparation, sample handling, quality control, specialised support (including temperature-controlled storage, sterilisation support and equipment verification) or engineering services.</p>
+      <ul>
+        <li><strong>Scope.</strong> The scope, method, deliverables, price and timeframe for Services are set out in a Quotation or written scope of work. Work outside that scope is quoted separately.</li>
+        <li><strong>Your responsibilities.</strong> You must give us accurate and complete information; make sure samples, glassware and equipment are correctly labelled, suitably packaged and safe to handle; and tell us in writing about any biological, chemical, radioactive, infectious or other hazard before we receive them.</li>
+        <li><strong>Authority to submit.</strong> You confirm that you have the legal right and any required consents or permits to submit the samples, materials or equipment to us.</li>
+        <li><strong>Unsafe or unsuitable items.</strong> We may refuse, quarantine, return or safely dispose of samples or items that are unlabelled, damaged, leaking, unsafe, undisclosed as hazardous or unsuitable for the requested Service, at your cost.</li>
+        <li><strong>Turnaround times.</strong> Turnaround times are estimates and depend on receiving complete, correct items and information.</li>
+        <li><strong>Results and reports.</strong> Results, verification and quality-control findings relate only to the items received and to the conditions at the time. Unless a Quotation or report expressly says so, Services are not performed under formal accreditation.</li>
+        <li><strong>Client-supplied equipment and glassware.</strong> Equipment or glassware supplied by you remains at your risk while in transit to and from us. We will take reasonable care of it while it is in our possession, but we are not liable for pre-existing defects, wear, or breakage inherent to cleaning, calibration or testing processes.</li>
+        <li><strong>Storage and disposal.</strong> We store samples and items only for the period agreed. Items not collected after we give notice may be returned at your cost or disposed of in line with applicable law.</li>
+        <li><strong>Engineering work.</strong> Engineering work is carried out to the specifications and drawings you approve. You are responsible for site access, a safe working environment, required approvals and the accuracy of information you give us.</li>
+      </ul>
+    </section>
+
+    <section class="terms-section" id="safety">
+      <h2><span>15</span>Health, safety and hazardous materials</h2>
+      <ul>
+        <li>Laboratory Goods are intended for use by suitably trained people in appropriate laboratory conditions. You are responsible for training, supervision, personal protective equipment, safe installation and correct operation.</li>
+        <li>Follow the manufacturer’s instructions, safety data sheets and labels, and comply with the Occupational Health and Safety Act 85 of 1993 and other laws that apply to your workplace.</li>
+        <li>You are responsible for the lawful storage, handling, transport and disposal of hazardous items and laboratory waste. Please ask us if you need available documentation for a product.</li>
+        <li>Glassware, sharps and heated or pressurised equipment can cause injury if handled incorrectly. Inspect glassware before use and do not use chipped, cracked or damaged items.</li>
+      </ul>
+    </section>
+
+    <section class="terms-section" id="ip">
+      <h2><span>16</span>Intellectual property</h2>
+      <ul>
+        <li>The Comeiin Works name, logo, website design, text, graphics, images and other content belong to us or our licensors and are protected by South African and international intellectual property law.</li>
+        <li>You may view and print website content for your own genuine enquiries and internal purposes. You may not copy, republish, modify, sell or otherwise exploit it without our written permission.</li>
+        <li>Third-party product names, brands and trademarks are the property of their owners and are used only to identify the products. Their use does not imply endorsement or affiliation.</li>
+        <li>If you give us drawings, specifications, product lists or other materials, you confirm that you may do so and give us permission to use them to prepare Quotations and supply Goods and Services to you.</li>
+      </ul>
+    </section>
+
+    <section class="terms-section" id="privacy">
+      <h2><span>17</span>Privacy and personal information</h2>
+      <p>We respect your privacy and handle personal information in line with the Protection of Personal Information Act 4 of 2013 (POPIA). We collect information such as your name, email address, telephone number, company and the details of your enquiry, quote list and account in order to respond to you, prepare Quotations, process Orders, deliver Goods and Services, provide support and improve the website.</p>
+      <ul>
+        <li>We do not sell your personal information. We share it only with service providers and partners who need it to help us serve you (for example hosting, email, communication and delivery providers), and where the law requires it.</li>
+        <li>The website may use cookies and local browser storage, for example to keep your quote list and preferences on your device.</li>
+        <li>You may ask us to access, correct or delete your personal information, or object to its processing, by contacting <a href="mailto:Admin@comeiin.co.za">Admin@comeiin.co.za</a>.</li>
+      </ul>
+      <p>Please read our <a href="{% url 'core:privacy' %}">Privacy Policy</a> for full details.</p>
+    </section>
+
+    <section class="terms-section" id="electronic">
+      <h2><span>18</span>Electronic communications</h2>
+      <ul>
+        <li>You agree that we may communicate with you electronically, including by email, through the website, and by messaging channels such as WhatsApp, and that these communications satisfy any legal requirement that they be in writing.</li>
+        <li>Electronic documents, acceptances and records, including Quotations, purchase orders and invoices, are valid and binding to the extent permitted by the Electronic Communications and Transactions Act 25 of 2002.</li>
+        <li>Please make sure the contact details you give us are correct. We are not responsible for messages that do not reach you because of incorrect details or spam filters.</li>
+      </ul>
+    </section>
+
+    <section class="terms-section" id="third-party">
+      <h2><span>19</span>Third-party services and links</h2>
+      <p>The website may link to or embed third-party services such as Google Maps, social media platforms (LinkedIn, Facebook and Instagram), and WhatsApp chat tools. These services are provided by third parties under their own terms and privacy policies. We do not control them and are not responsible for their content, availability or practices. Using them is at your own risk.</p>
+    </section>
+
+    <section class="terms-section" id="liability">
+      <h2><span>20</span>Limitation of liability</h2>
+      <ul>
+        <li>To the fullest extent permitted by law, we are not liable for any indirect, special or consequential loss or damage, or for loss of profit, revenue, data, research, samples, business opportunity or goodwill, however arising.</li>
+        <li>Our total liability to you arising from a particular Order or Service is limited to the amount you paid us for the specific Goods or Services that gave rise to the claim.</li>
+        <li>The website and its content are provided “as is” and “as available”. We do not guarantee that they are complete, current or free of errors or interruptions.</li>
+        <li>Nothing in these Terms excludes or limits liability for fraud, gross negligence, wilful misconduct, or any liability that cannot lawfully be excluded or limited, including under the Consumer Protection Act where it applies.</li>
+      </ul>
+    </section>
+
+    <section class="terms-section" id="indemnity">
+      <h2><span>21</span>Indemnity</h2>
+      <p>To the extent permitted by law, you indemnify us against claims, losses, damages and reasonable costs arising from your breach of these Terms, your unlawful or unsafe use of Goods or the website, samples or materials you submitted without proper disclosure, authority or safe packaging, or any inaccurate information or specification you gave us.</p>
+    </section>
+
+    <section class="terms-section" id="confidentiality">
+      <h2><span>22</span>Confidentiality</h2>
+      <p>Each party must keep confidential any non-public commercial, technical or pricing information that the other party shares in connection with an Agreement, use it only for that purpose, and not disclose it without consent. This does not apply to information that is public through no fault of the recipient, was already lawfully known to it, or must be disclosed by law or a court order. This obligation continues after the Agreement ends.</p>
+    </section>
+
+    <section class="terms-section" id="force-majeure">
+      <h2><span>23</span>Events beyond our control</h2>
+      <p>We are not liable for delay or failure to perform caused by events beyond our reasonable control. This includes power outages and load-shedding, supplier or manufacturer delays, shortages, transport, courier or customs delays, strikes, riots, fire, flood or other natural disasters, pandemics, governmental action, and failures of telecommunications or utilities.</p>
+      <p>We will tell you as soon as reasonably possible and resume performance when we can. If such an event continues for more than 60 days, either party may cancel the affected part of the Order by written notice, without liability, and we will refund any amounts paid for Goods or Services not delivered.</p>
+    </section>
+
+    <section class="terms-section" id="ethics">
+      <h2><span>24</span>Ethics, compliance and B-BBEE</h2>
+      <ul>
+        <li>Comeiin Works is a Level 1 B-BBEE contributor. Supporting documentation is available on request by contacting us. You can also read about our status on our <a href="{% url 'core:about' %}#bbbee-title">About page</a>.</li>
+        <li>We conduct business honestly and lawfully. We do not tolerate bribery, corruption or fraud, and we expect the same of our clients and suppliers.</li>
+        <li>You agree not to offer or accept any improper payment, gift or advantage in connection with an Agreement, and to comply with laws that apply to your dealings with us, including anti-corruption, sanctions and import and export laws.</li>
+      </ul>
+    </section>
+
+    <section class="terms-section" id="changes">
+      <h2><span>25</span>Changes to these Terms</h2>
+      <p>We may update these Terms from time to time, for example to reflect changes in our business, services or the law. The updated Terms will be posted on this page with a new “last updated” date and apply from that date. Your continued use of the website or our Goods and Services after an update means you accept the updated Terms. An Order that has already been confirmed remains subject to the Terms that applied when it was confirmed.</p>
+    </section>
+
+    <section class="terms-section" id="general">
+      <h2><span>26</span>General provisions</h2>
+      <ul>
+        <li><strong>Entire agreement.</strong> These Terms, together with any accepted Quotation and Order, are the whole agreement between us on their subject matter. If they conflict, the accepted Quotation prevails for that Order.</li>
+        <li><strong>Severability.</strong> If any provision is found to be invalid or unenforceable, the rest remains in effect.</li>
+        <li><strong>No waiver.</strong> A delay or failure to enforce a right does not waive it.</li>
+        <li><strong>Assignment.</strong> You may not cede, assign or transfer your rights or obligations without our written consent. We may assign ours to a successor to our business.</li>
+        <li><strong>Notices.</strong> Notices to us must be sent to <a href="mailto:Admin@comeiin.co.za">Admin@comeiin.co.za</a>. We may send notices to the email address or contact details you gave us.</li>
+        <li><strong>Language.</strong> These Terms are written in English, and English prevails over any translation.</li>
+      </ul>
+    </section>
+
+    <section class="terms-section" id="law">
+      <h2><span>27</span>Governing law and disputes</h2>
+      <ul>
+        <li>These Terms and every Agreement are governed by the laws of the Republic of South Africa.</li>
+        <li>If a dispute arises, please contact us first in writing so that we can try in good faith to resolve it quickly.</li>
+        <li>If we cannot resolve it, you and we submit to the non-exclusive jurisdiction of the South African courts having jurisdiction in Gauteng.</li>
+        <li>If you are a consumer, you may also approach the National Consumer Commission or another relevant regulator, ombud or alternative dispute resolution body.</li>
+      </ul>
+    </section>
+
+    <section class="terms-contact" id="contact-us">
+      <h2><span>28</span>Contact us</h2>
+      <p>Questions about these Terms, a quotation, or your personal information? Get in touch and we will be glad to help.</p>
+      <ul>
+        <li><b>Company</b> Comeiin Works (Pty) Ltd</li>
+        <li><b>Address</b> Innovation Worx – 16th Road</li>
+        <li><b>Telephone</b> <a href="tel:+27112387334">011 238 7334</a></li>
+        <li><b>Email</b> <a href="mailto:Admin@comeiin.co.za">Admin@comeiin.co.za</a></li>
+      </ul>
+      <div class="terms-actions">
+        <a class="terms-btn" href="{% url 'core:home' %}#contact">Contact page <span aria-hidden="true">→</span></a>
+        <a class="terms-btn" href="{% url 'core:privacy' %}">Privacy Policy <span aria-hidden="true">→</span></a>
+        <button class="terms-btn" type="button" onclick="window.print()">Print these Terms</button>
+      </div>
+    </section>
+
+  </div>
 </section>
+
 {% endblock %}

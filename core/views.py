@@ -231,6 +231,17 @@ def laboratory_view(request):
     return render(request, 'laboratory.html', context)
 
 
+def terms_view(request):
+    """Laboratory capabilities page."""
+    from products.models import Category, Product
+
+    context = {
+        'product_count': Product.objects.filter(is_active=True).count(),
+        'categories': Category.objects.filter(is_active=True),
+    }
+    return render(request, 'terms.html', context)
+
+
 # ============================================================
 # ENGINEERING PAGE
 # ============================================================
@@ -252,3 +263,24 @@ def engineering_view(request):
 
 def contact_redirect(request):
     return redirect('/#contact')
+
+def favicon_view(request):
+    """
+    Dynamically serve the favicon from static files.
+    Google looks for /favicon.ico at the domain root.
+    """
+    # Point to the largest square icon you have
+    favicon_path = os.path.join(settings.STATIC_ROOT or settings.BASE_DIR / 'static',
+                                'assets', 'pwa', 'icon-192.png')
+    
+    # Fallback chain
+    if not os.path.exists(favicon_path):
+        favicon_path = os.path.join(settings.BASE_DIR, 'static', 'assets', 'pwa', 'favicon-32.png')
+    
+    if os.path.exists(favicon_path):
+        with open(favicon_path, 'rb') as f:
+            return HttpResponse(f.read(), content_type='image/png')
+    
+    # Last resort: redirect to static URL
+    from django.shortcuts import redirect
+    return redirect(static('assets/pwa/icon-192.png'))

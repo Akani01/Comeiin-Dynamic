@@ -8,6 +8,8 @@ urlpatterns = [
     # HTML pages
     path('', views.home_view, name='home'),
     path('about/', views.about_view, name='about'),
+    path('laboratory/', views.laboratory_view, name='laboratory'),
+    path('engineering/', views.engineering_redirect, name='engineering'),
     path('privacy/', views.privacy_view, name='privacy'),
 
     # API

@@ -1,5 +1,5 @@
 # core/views.py
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.core.mail import send_mail
 from django.conf import settings
 import os
@@ -40,6 +40,16 @@ def home_view(request):
 
 def about_view(request):
     return render(request, 'about.html')
+
+
+def laboratory_view(request):
+    """Guide science and engineering projects to the right Comeiin support."""
+    return render(request, 'laboratory.html')
+
+
+def engineering_redirect(request):
+    """Keep old Engineering links useful after consolidating project support."""
+    return redirect('/laboratory/?discipline=engineering')
 
 
 def contact_view(request):

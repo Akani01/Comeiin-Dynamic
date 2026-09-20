@@ -1,7 +1,11 @@
 /* ============================================================
    future.js — Comeiin Works interactive layer
-   Catalogue filter routing, WhatsApp widget, Vanta background.
+   Catalogue routing, logistics carousel and WhatsApp widget.
+   Scoped to avoid collisions with app.js and third-party scripts.
    ============================================================ */
+
+(function () {
+'use strict';
 
 /* Catalogue base URL — set in base.html */
 const FUTURE_CATALOGUE_URL = window.CW_CATALOGUE || '/products/';
@@ -179,24 +183,4 @@ whatsappWidget
 whatsappLaunch.addEventListener('click', () => setWhatsAppOpen(whatsappChat.hidden));
 setWhatsAppOpen(false);
 
-/* Subtle brand-colour network behind the whole page. */
-const vantaPage = document.querySelector('#vanta-page');
-if (vantaPage && !matchMedia('(prefers-reduced-motion: reduce)').matches && window.VANTA?.NET) {
-  try {
-    const vantaEffect = VANTA.NET({
-      el: vantaPage,
-      mouseControls: true,
-      touchControls: false,
-      gyroControls: false,
-      color: 0xfb7908,
-      backgroundColor: 0xedf3fc,
-      points: 6,
-      maxDistance: 18,
-      spacing: 20,
-      showDots: true,
-    });
-    addEventListener('pagehide', () => vantaEffect.destroy(), { once: true });
-  } catch (error) {
-    console.warn('Animated background unavailable; using the hero image.', error);
-  }
-}
+})();

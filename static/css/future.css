@@ -505,6 +505,7 @@ header {
   border-radius: 50%;
   pointer-events: none;
 }
+.contact h1,
 .contact h2 {
   font-weight: 500;
   font-size: clamp(30px, 3.7vw, 52px);
@@ -2553,9 +2554,11 @@ body > .site-header {
 .project-support-grid span { margin-top: 12px; color: #52667e; font-size: 13px; line-height: 1.5; }
 
 .contact-with-map {
+  display: grid;
   grid-template-columns: minmax(230px, .8fr) minmax(260px, 1fr) minmax(320px, 1.15fr);
   gap: clamp(24px, 4vw, 56px);
 }
+.contact-intro > p:not(.eyebrow) { max-width: 520px; color: #dceaff; line-height: 1.65; }
 .contact-socials { margin-top: 22px; }
 .contact-map {
   position: relative;

@@ -192,7 +192,7 @@ def pwa_manifest(request):
                 "name": "Contact",
                 "short_name": "Contact",
                 "description": "Contact the Comeiin team",
-                "url": "/#contact",
+                "url": "/contact/",
                 "icons": [{"src": "/static/assets/pwa/shortcut-contact.png", "sizes": "96x96", "type": "image/png"}],
             },
         ],

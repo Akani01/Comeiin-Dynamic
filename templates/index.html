@@ -3,6 +3,53 @@
 
 {% block title %}Comeiin Works — Laboratory Equipment & Consumables{% endblock %}
 
+{% block extra_head %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://comeiin.co.za/#organization",
+      "name": "Comeiin Works",
+      "legalName": "Comeiin Works (Pty) Ltd.",
+      "url": "https://comeiin.co.za/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://comeiin.co.za{% static 'assets/pwa/icon-512.png' %}",
+        "contentUrl": "https://comeiin.co.za{% static 'assets/pwa/icon-512.png' %}",
+        "width": 512,
+        "height": 512
+      },
+      "email": "Admin@comeiin.co.za",
+      "telephone": "+27 11 238 7334",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Innovation Worx, 1 Scale End",
+        "addressLocality": "Midrand",
+        "postalCode": "1685",
+        "addressCountry": "ZA"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/comeiin-works-631519437/",
+        "https://www.facebook.com/profile.php?id=61594282446363",
+        "https://www.instagram.com/comeiinworks/"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://comeiin.co.za/#website",
+      "url": "https://comeiin.co.za/",
+      "name": "Comeiin Works",
+      "publisher": {
+        "@id": "https://comeiin.co.za/#organization"
+      }
+    }
+  ]
+}
+</script>
+{% endblock %}
+
 {% block content %}
 <section id="product-view" class="section" hidden></section>
 

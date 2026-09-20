@@ -1,5 +1,5 @@
 // static/js/serviceworker.js — Comeiin Works PWA
-const CACHE_NAME = 'comeiin-v5';
+const CACHE_NAME = 'comeiin-v6';
 const OFFLINE_URLS = ['/', '/about/', '/laboratory/', '/products/', '/privacy/'];
 
 self.addEventListener('install', (event) => {

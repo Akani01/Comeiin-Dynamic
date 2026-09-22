@@ -12,6 +12,58 @@ const FUTURE_CATALOGUE_URL = window.CW_CATALOGUE || '/products/';
 const ABOUT_URL     = window.CW_ABOUT     || '/about/';
 const PRIVACY_URL   = window.CW_PRIVACY   || '/privacy/';
 
+/* Standard site navigation: responsive menu and accessible Industries dropdown. */
+const siteHeader = document.querySelector('.site-header');
+const siteNav = document.querySelector('.site-nav');
+const navToggle = document.querySelector('.nav-toggle');
+const industryToggle = document.querySelector('.industry-toggle');
+const industryMenu = document.querySelector('.industry-menu');
+
+function setIndustryMenu(open) {
+  if (!industryToggle || !industryMenu) return;
+  industryToggle.setAttribute('aria-expanded', String(open));
+  industryMenu.hidden = !open;
+}
+
+function setMainNavigation(open) {
+  if (!siteNav || !navToggle) return;
+  siteNav.dataset.open = String(open);
+  navToggle.setAttribute('aria-expanded', String(open));
+  navToggle.classList.toggle('is-open', open);
+  navToggle.querySelector('.sr-only').textContent = open ? 'Close navigation' : 'Open navigation';
+  if (!open) setIndustryMenu(false);
+}
+
+navToggle?.addEventListener('click', () => {
+  setMainNavigation(navToggle.getAttribute('aria-expanded') !== 'true');
+});
+industryToggle?.addEventListener('click', () => {
+  setIndustryMenu(industryToggle.getAttribute('aria-expanded') !== 'true');
+});
+industryMenu?.querySelectorAll('a').forEach((link) => {
+  link.addEventListener('click', () => {
+    setIndustryMenu(false);
+    setMainNavigation(false);
+  });
+});
+siteNav?.querySelectorAll(':scope > a').forEach((link) => {
+  link.addEventListener('click', () => setMainNavigation(false));
+});
+document.addEventListener('click', (event) => {
+  if (siteHeader && !siteHeader.contains(event.target)) {
+    setIndustryMenu(false);
+    setMainNavigation(false);
+  }
+});
+document.addEventListener('keydown', (event) => {
+  if (event.key !== 'Escape') return;
+  setIndustryMenu(false);
+  setMainNavigation(false);
+});
+matchMedia('(min-width: 1051px)').addEventListener?.('change', (event) => {
+  if (event.matches) setMainNavigation(false);
+});
+
 /* Route the guided finder through the same catalogue filters. */
 function findSupplies(term) {
   if (document.body.dataset.product || !document.getElementById('catalogue')) {

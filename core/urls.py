@@ -9,7 +9,8 @@ urlpatterns = [
     path('', views.home_view, name='home'),
     path('about/', views.about_view, name='about'),
     path('contact/', views.contact_view, name='contact'),
-    path('laboratory/', views.laboratory_view, name='laboratory'),
+    path('industries/', views.industries_view, name='industries'),
+    path('laboratory/', views.laboratory_redirect, name='laboratory'),
     path('engineering/', views.engineering_redirect, name='engineering'),
     path('privacy/', views.privacy_view, name='privacy'),
 

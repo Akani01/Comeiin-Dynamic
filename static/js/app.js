@@ -224,29 +224,40 @@ function announce(message) {
   noticeTimer = setTimeout(() => $('#notice').classList.remove('visible'), 4000);
 }
 function closeCategories() {
-  $('#category-menu').hidden = true;
-  $('.browse-toggle').setAttribute('aria-expanded', 'false');
+  const menu = $('#category-menu');
+  const toggle = $('.browse-toggle');
+  if (menu) menu.hidden = true;
+  if (toggle) toggle.setAttribute('aria-expanded', 'false');
 }
 const categories = [...new Set(supplies.map((p) => p.category))];
-$('#category-links').innerHTML = categories
-  .map(
-    (cat) =>
-      `<a href="${CATALOGUE_URL}?category=${encodeURIComponent(cat)}#catalogue" data-browse="${escapeHTML(cat)}"><strong>${escapeHTML(cat)}</strong><span>${supplies.filter((p) => p.category === cat).length} products & ranges</span></a>`,
-  )
-  .join('');
-$('.browse-toggle').addEventListener('click', () => {
-  const expanded = $('.browse-toggle').getAttribute('aria-expanded') === 'true';
-  $('#category-menu').hidden = expanded;
-  $('.browse-toggle').setAttribute('aria-expanded', String(!expanded));
-});
-$('.menu-close').addEventListener('click', () => {
-  closeCategories();
-  $('.browse-toggle').focus();
-});
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && !$('#category-menu').hidden) {
+const categoryLinks = $('#category-links');
+const browseToggle = $('.browse-toggle');
+const menuClose = $('.menu-close');
+if (categoryLinks) {
+  categoryLinks.innerHTML = categories
+    .map(
+      (cat) =>
+        `<a href="${CATALOGUE_URL}?category=${encodeURIComponent(cat)}#catalogue" data-browse="${escapeHTML(cat)}"><strong>${escapeHTML(cat)}</strong><span>${supplies.filter((p) => p.category === cat).length} products & ranges</span></a>`,
+    )
+    .join('');
+}
+if (browseToggle && $('#category-menu')) {
+  browseToggle.addEventListener('click', () => {
+    const expanded = browseToggle.getAttribute('aria-expanded') === 'true';
+    $('#category-menu').hidden = expanded;
+    browseToggle.setAttribute('aria-expanded', String(!expanded));
+  });
+}
+if (menuClose && browseToggle) {
+  menuClose.addEventListener('click', () => {
     closeCategories();
-    $('.browse-toggle').focus();
+    browseToggle.focus();
+  });
+}
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && $('#category-menu') && !$('#category-menu').hidden) {
+    closeCategories();
+    browseToggle?.focus();
   }
 });
 document.addEventListener('click', (e) => {

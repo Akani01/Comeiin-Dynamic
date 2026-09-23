@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Industries We Support | Comeiin Works{% endblock %}
 {% block meta_description %}Explore laboratory equipment, consumables and sourcing support for clinical laboratories, hospitals, research, mining, hospitality, manufacturing and water processing.{% endblock %}
@@ -38,53 +39,74 @@
 
   <div class="support-grid industries-grid" aria-live="polite">
     <article class="support-card" data-industry="clinical">
-      <span>01 / CLINICAL LABORATORIES</span>
-      <h3>Reliable essentials for diagnostic workflows</h3>
-      <p>Source equipment and routine consumables for sample collection, preparation, analysis and storage.</p>
-      <ul><li>Specimen containers and collection supplies</li><li>Microscopy and sample-preparation essentials</li><li>Liquid handling and laboratory plasticware</li><li>Consolidated recurring requirements</li></ul>
-      <button class="quote-open text-link" type="button">Request clinical laboratory supplies ↗︎</button>
+      <img class="support-card-image" src="{% static 'assets/industries/01-clinical-laboratories.jpg' %}" alt="Clinical laboratory scientist preparing diagnostic samples" loading="lazy" decoding="async" width="1200" height="800" />
+      <div class="support-card-body">
+        <span>01 / CLINICAL LABORATORIES</span>
+        <h3>Reliable essentials for diagnostic workflows</h3>
+        <p>Source equipment and routine consumables for sample collection, preparation, analysis and storage.</p>
+        <ul><li>Specimen containers and collection supplies</li><li>Microscopy and sample-preparation essentials</li><li>Liquid handling and laboratory plasticware</li><li>Consolidated recurring requirements</li></ul>
+        <button class="quote-open text-link" type="button">Request clinical laboratory supplies ↗︎</button>
+      </div>
     </article>
     <article class="support-card" data-industry="hospitals">
-      <span>02 / HOSPITALS</span>
-      <h3>Responsive supply support for healthcare teams</h3>
-      <p>Coordinate laboratory, diagnostic and general-use requirements across hospital departments and facilities.</p>
-      <ul><li>Laboratory equipment and consumables</li><li>PPE and clinical support products</li><li>Cold-chain monitoring essentials</li><li>Department and facility-wide quotations</li></ul>
-      <button class="quote-open text-link" type="button">Discuss hospital requirements ↗︎</button>
+      <img class="support-card-image" src="{% static 'assets/industries/02-hospitals.jpg' %}" alt="Hospital healthcare team reviewing clinical supplies" loading="lazy" decoding="async" width="1200" height="800" />
+      <div class="support-card-body">
+        <span>02 / HOSPITALS</span>
+        <h3>Responsive supply support for healthcare teams</h3>
+        <p>Coordinate laboratory, diagnostic and general-use requirements across hospital departments and facilities.</p>
+        <ul><li>Laboratory equipment and consumables</li><li>PPE and clinical support products</li><li>Cold-chain monitoring essentials</li><li>Department and facility-wide quotations</li></ul>
+        <button class="quote-open text-link" type="button">Discuss hospital requirements ↗︎</button>
+      </div>
     </article>
     <article class="support-card" data-industry="academic-research">
-      <span>03 / ACADEMIC &amp; RESEARCH FACILITIES</span>
-      <h3>Practical, teaching and research readiness</h3>
-      <p>Build repeatable equipment and consumable lists for classrooms, teaching laboratories and research teams.</p>
-      <ul><li>Teaching laboratory kits</li><li>Research equipment and consumables</li><li>Multi-item quotation support</li><li>Recurring supply planning</li></ul>
-      <button class="quote-open text-link" type="button">Build an academic or research enquiry ↗︎</button>
+      <img class="support-card-image" src="{% static 'assets/industries/03-academic-research.jpg' %}" alt="Academic research team working together at a microscope" loading="lazy" decoding="async" width="1200" height="800" />
+      <div class="support-card-body">
+        <span>03 / ACADEMIC &amp; RESEARCH FACILITIES</span>
+        <h3>Practical, teaching and research readiness</h3>
+        <p>Build repeatable equipment and consumable lists for classrooms, teaching laboratories and research teams.</p>
+        <ul><li>Teaching laboratory kits</li><li>Research equipment and consumables</li><li>Multi-item quotation support</li><li>Recurring supply planning</li></ul>
+        <button class="quote-open text-link" type="button">Build an academic or research enquiry ↗︎</button>
+      </div>
     </article>
     <article class="support-card" data-industry="mining">
-      <span>04 / MINING</span>
-      <h3>Sampling and testing supplies for demanding sites</h3>
-      <p>Support field and laboratory teams with products suited to collection, preparation, testing and quality control.</p>
-      <ul><li>Sample collection and storage products</li><li>Testing and preparation consumables</li><li>Laboratory safety equipment</li><li>Project and site delivery coordination</li></ul>
-      <button class="quote-open text-link" type="button">Plan a mining requirement ↗︎</button>
+      <img class="support-card-image" src="{% static 'assets/industries/04-mining.jpg' %}" alt="Mining specialists collecting and documenting rock samples" loading="lazy" decoding="async" width="1200" height="800" />
+      <div class="support-card-body">
+        <span>04 / MINING</span>
+        <h3>Sampling and testing supplies for demanding sites</h3>
+        <p>Support field and laboratory teams with products suited to collection, preparation, testing and quality control.</p>
+        <ul><li>Sample collection and storage products</li><li>Testing and preparation consumables</li><li>Laboratory safety equipment</li><li>Project and site delivery coordination</li></ul>
+        <button class="quote-open text-link" type="button">Plan a mining requirement ↗︎</button>
+      </div>
     </article>
     <article class="support-card" data-industry="hospitality">
-      <span>05 / HOSPITALITY</span>
-      <h3>Hygiene, quality and operational essentials</h3>
-      <p>Source practical testing, measurement and consumable requirements for hospitality operations.</p>
-      <ul><li>Hygiene and quality-control supplies</li><li>Temperature monitoring equipment</li><li>Cleaning and handling essentials</li><li>Multi-site supply enquiries</li></ul>
-      <button class="quote-open text-link" type="button">Discuss hospitality supplies ↗︎</button>
+      <img class="support-card-image" src="{% static 'assets/industries/05-hospitality.jpg' %}" alt="Hospitality professionals performing food quality checks" loading="lazy" decoding="async" width="1200" height="800" />
+      <div class="support-card-body">
+        <span>05 / HOSPITALITY</span>
+        <h3>Hygiene, quality and operational essentials</h3>
+        <p>Source practical testing, measurement and consumable requirements for hospitality operations.</p>
+        <ul><li>Hygiene and quality-control supplies</li><li>Temperature monitoring equipment</li><li>Cleaning and handling essentials</li><li>Multi-site supply enquiries</li></ul>
+        <button class="quote-open text-link" type="button">Discuss hospitality supplies ↗︎</button>
+      </div>
     </article>
     <article class="support-card" data-industry="manufacturing">
-      <span>06 / MANUFACTURING</span>
-      <h3>Quality-control and process support</h3>
-      <p>Turn technical specifications, bills of quantities and operational needs into a structured sourcing request.</p>
-      <ul><li>Quality-control laboratory supplies</li><li>Measurement and testing equipment</li><li>Technical consumables and alternatives</li><li>Phased procurement coordination</li></ul>
-      <button class="quote-open text-link" type="button">Discuss manufacturing requirements ↗︎</button>
+      <img class="support-card-image" src="{% static 'assets/industries/06-manufacturing.jpg' %}" alt="Manufacturing quality team measuring a machined component" loading="lazy" decoding="async" width="1200" height="800" />
+      <div class="support-card-body">
+        <span>06 / MANUFACTURING</span>
+        <h3>Quality-control and process support</h3>
+        <p>Turn technical specifications, bills of quantities and operational needs into a structured sourcing request.</p>
+        <ul><li>Quality-control laboratory supplies</li><li>Measurement and testing equipment</li><li>Technical consumables and alternatives</li><li>Phased procurement coordination</li></ul>
+        <button class="quote-open text-link" type="button">Discuss manufacturing requirements ↗︎</button>
+      </div>
     </article>
     <article class="support-card" data-industry="water-processing">
-      <span>07 / WATER PROCESSING</span>
-      <h3>Sampling, monitoring and water-quality support</h3>
-      <p>Build a practical supply request for collection, preparation, monitoring and laboratory testing.</p>
-      <ul><li>Sample containers and handling supplies</li><li>Testing and liquid-handling essentials</li><li>Field and laboratory consumables</li><li>Storage and transport requirements</li></ul>
-      <button class="quote-open text-link" type="button">Plan a water-processing requirement ↗︎</button>
+      <img class="support-card-image" src="{% static 'assets/industries/07-water-processing.jpg' %}" alt="Water processing specialists testing a water sample" loading="lazy" decoding="async" width="1200" height="800" />
+      <div class="support-card-body">
+        <span>07 / WATER PROCESSING</span>
+        <h3>Sampling, monitoring and water-quality support</h3>
+        <p>Build a practical supply request for collection, preparation, monitoring and laboratory testing.</p>
+        <ul><li>Sample containers and handling supplies</li><li>Testing and liquid-handling essentials</li><li>Field and laboratory consumables</li><li>Storage and transport requirements</li></ul>
+        <button class="quote-open text-link" type="button">Plan a water-processing requirement ↗︎</button>
+      </div>
     </article>
   </div>
 </section>

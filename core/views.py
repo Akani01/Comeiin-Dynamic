@@ -1,5 +1,5 @@
 # core/views.py
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.core.mail import send_mail
 from django.conf import settings
 import os
@@ -40,6 +40,25 @@ def home_view(request):
 
 def about_view(request):
     return render(request, 'about.html')
+
+
+def industries_view(request):
+    """Show the sectors Comeiin Works supports and their typical requirements."""
+    return render(request, 'industries.html')
+
+
+def laboratory_redirect(request):
+    """Keep older Laboratory links working after the navigation restructure."""
+    query = request.GET.urlencode()
+    destination = '/industries/'
+    if query:
+        destination = f'{destination}?{query}'
+    return redirect(destination)
+
+
+def engineering_redirect(request):
+    """Keep old Engineering links useful after consolidating project support."""
+    return redirect('/industries/?industry=manufacturing#industry-paths')
 
 
 def contact_view(request):
@@ -182,7 +201,7 @@ def pwa_manifest(request):
                 "name": "Contact",
                 "short_name": "Contact",
                 "description": "Contact the Comeiin team",
-                "url": "/#contact",
+                "url": "/contact/",
                 "icons": [{"src": "/static/assets/pwa/shortcut-contact.png", "sizes": "96x96", "type": "image/png"}],
             },
         ],

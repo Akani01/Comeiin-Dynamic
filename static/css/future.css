@@ -2554,6 +2554,7 @@ body > .site-header {
 .project-support-grid a > img {
   display: block;
   width: 100%;
+  height: auto;
   aspect-ratio: 3 / 2;
   object-fit: cover;
   transition: transform 360ms ease;
@@ -2623,7 +2624,7 @@ body > .site-header {
 .support-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 .support-card { overflow: hidden; border: 1px solid #cfdae9; border-radius: 28px; background: #ffffffde; box-shadow: 0 20px 50px #0a367215; }
 .support-card[hidden] { display: none; }
-.support-card-image { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.support-card-image { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
 .support-card-body { padding: clamp(26px, 4vw, 44px); }
 .support-card-body > span { color: var(--orange); font-size: 10px; font-weight: 800; letter-spacing: 1.6px; }
 .support-card h3 { margin: 13px 0 12px; color: var(--ink); font: 650 clamp(23px, 3vw, 34px)/1.12 Manrope, sans-serif; }
